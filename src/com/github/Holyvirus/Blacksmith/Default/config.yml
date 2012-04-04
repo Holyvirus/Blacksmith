@@ -1,0 +1,9 @@
+BlackSmith:
+    prices:
+        woodbase: 10
+        stonebase: 20
+        ironbase: 60
+        goldbase: 50
+        diamondbase: 200
+    global:
+        ecoEngine: BOSECONOMY

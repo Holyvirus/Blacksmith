@@ -1,0 +1,46 @@
+name: Blacksmith
+main: com.github.Holyvirus.Blacksmith.BlackSmith
+version: 2.0
+permissions:
+    blacksmith.*:
+        description: Grants access to all BlackSmith interactions
+        childs:
+            blacksmith.place.value: true
+            blacksmith.place.repair: true
+            blacksmith.remove.value: true
+            blacksmith.remove.repair: true
+            blacksmith.use.value: true
+            blacksmith.use.repair: true
+    blacksmith.use.*:
+        description: Grants access to all BlackSmith use interactions
+        childs:
+            blacksmith.use.value: true
+            blacksmith.use.repair: true
+    blacksmith.place.*:
+        description: Grants access to all BlackSmith placement interactions
+        childs:
+            blacksmith.place.value: true
+            blacksmith.place.repair: true
+    blacksmith.remove.*:
+        description: Grants access to all BlackSmith remove interactions
+        childs:
+            blacksmith.remove.value: true
+            blacksmith.remove.repair: true
+    blacksmith.use.value:
+        description: Grants ability to use Value signs
+        default: true
+    blacksmith.use.repair:
+        description: Grants ability to use Repair signs
+        default: true
+    blacksmith.place.value:
+        description: Grants ability to place Value signs
+        default: op
+    blacksmith.place.repair:
+        description: Grants ability to place Repair signs
+        default: op
+    blacksmith.remove.value:
+        description: Grants ability to remove Value signs
+        default: op
+    blacksmith.remove.repair:
+        description: Grants ability to remove Repair signs
+        default: op
