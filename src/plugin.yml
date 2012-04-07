@@ -1,6 +1,6 @@
 name: Blacksmith
 main: com.github.Holyvirus.Blacksmith.BlackSmith
-version: 2.0
+version: 2.1
 permissions:
     blacksmith.*:
         description: Grants access to all BlackSmith interactions
