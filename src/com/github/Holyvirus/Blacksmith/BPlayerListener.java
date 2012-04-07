@@ -62,12 +62,28 @@ public class BPlayerListener implements Listener {
 			return;
 		}
 		
+		if(this.useBOSE && this.bose == null)
+			this.bose = plugin.getBose();
+		
+		
+		if(this.useIC && this.iconomy == null)
+			this.iconomy = plugin.getIco();
+		
 		if ((this.useIC && this.iconomy == null) || (this.useBOSE && this.bose == null)) {
 			this.plugin.getLogger().log(Level.SEVERE, "Missing economy engine!");
+			player.sendMessage(ChatColor.DARK_RED + "Missing economy engine!");
+			return;
 		}
 		
 		int cost = getTotalCost(item);
+		String mat = getToolMaterial(item);
 		int mc = getBlocksUsed(item);
+		
+		if(mat.equals("chain")) {
+			mc = mc * 3;
+			mat = "diamond";
+		}
+		
 		String matCost = "one";
 		if(mc == 1)
 			matCost = "one";
@@ -85,10 +101,18 @@ public class BPlayerListener implements Listener {
 			matCost = "seven";
 		else if(mc == 8)
 			matCost = "eight";
+		else if(mc == 12)
+			matCost = "twelf";
+		else if(mc == 15)
+			matCost = "fifteen";
+		else if(mc == 21)
+			matCost = "twenty one";
+		else if(mc == 24)
+			matCost = "twenty four";
 
 		/*if (getSignType(sign).equalsIgnoreCase("Kill")) {
 			killDura(item);
-		}*/ 
+		}*/
 		
 		if (getSignType(sign).equalsIgnoreCase("Value")) {
 			if(player.hasPermission("blacksmith.use.value")) {
@@ -107,7 +131,6 @@ public class BPlayerListener implements Listener {
 					player.sendMessage(ChatColor.GOLD + "It will cost " + cost + " to repair your tool.");
 				}
 				else if (this.useMat) {
-					String mat = getToolMaterial(item);
 					sendMaterialMessages(player, mat, matCost);
 				}	
 			}else{
@@ -136,7 +159,6 @@ public class BPlayerListener implements Listener {
 					subtractMoney(player, cost);
 				}
 				else if (this.useMat) {
-					String mat = getToolMaterial(item);
 					Material m = changeToMat(mat, player);
 					ItemStack mate = new ItemStack(m);
 					mate.setAmount(mc);
@@ -210,6 +232,8 @@ public class BPlayerListener implements Listener {
 			base = BlackSmith.goldBase;
 		}else if (tm.equalsIgnoreCase("diamond")) {
 			base = BlackSmith.diamondBase;
+		}else if (tm.equalsIgnoreCase("chain")) {
+			base = BlackSmith.chainBase;
 		}else{
 			return -1;
 		}
@@ -229,7 +253,8 @@ public class BPlayerListener implements Listener {
 			(type == Material.STONE_PICKAXE) || (type == Material.STONE_SPADE) || 
 			(type == Material.STONE_SWORD) || (type == Material.LEATHER_BOOTS) || 
 			(type == Material.LEATHER_HELMET) || (type == Material.LEATHER_LEGGINGS) || 
-			(type == Material.LEATHER_CHESTPLATE) || (type == Material.FISHING_ROD))
+			(type == Material.LEATHER_CHESTPLATE) || (type == Material.FISHING_ROD) ||
+			type == Material.BOW)
 			return "stone";
 		if ((type == Material.IRON_AXE) || (type == Material.IRON_HOE) || 
 			(type == Material.IRON_PICKAXE) || (type == Material.IRON_SPADE) || 
@@ -250,6 +275,10 @@ public class BPlayerListener implements Listener {
 			(type == Material.DIAMOND_CHESTPLATE)) {
 			return "diamond";
 		}
+		if (type == Material.CHAINMAIL_BOOTS || type == Material.CHAINMAIL_LEGGINGS ||
+			type == Material.CHAINMAIL_HELMET || type == Material.CHAINMAIL_CHESTPLATE) {
+			return "chain";
+		}
 		return "";
 	}
 
@@ -262,15 +291,15 @@ public class BPlayerListener implements Listener {
 			blocksUsed = 1;
 		else if ((type == Material.WOOD_HOE) || (type == Material.WOOD_SWORD) || (type == Material.STONE_HOE) || (type == Material.STONE_SWORD) || (type == Material.IRON_HOE) || (type == Material.IRON_SWORD) || (type == Material.GOLD_HOE) || (type == Material.GOLD_SWORD) || (type == Material.DIAMOND_HOE) || (type == Material.DIAMOND_SWORD))
 			blocksUsed = 2;
-		else if ((type == Material.WOOD_AXE) || (type == Material.WOOD_PICKAXE) || (type == Material.STONE_AXE) || (type == Material.STONE_PICKAXE) || (type == Material.IRON_AXE) || (type == Material.IRON_PICKAXE) || (type == Material.GOLD_AXE) || (type == Material.GOLD_PICKAXE) || (type == Material.DIAMOND_AXE) || (type == Material.DIAMOND_PICKAXE))
+		else if ((type == Material.WOOD_AXE) || (type == Material.WOOD_PICKAXE) || (type == Material.STONE_AXE) || (type == Material.STONE_PICKAXE) || (type == Material.IRON_AXE) || (type == Material.IRON_PICKAXE) || (type == Material.GOLD_AXE) || (type == Material.GOLD_PICKAXE) || (type == Material.DIAMOND_AXE) || (type == Material.DIAMOND_PICKAXE) || type == Material.BOW)
 			blocksUsed = 3;
-		else if ((type == Material.LEATHER_BOOTS) || (type == Material.IRON_BOOTS) || (type == Material.GOLD_BOOTS) || (type == Material.DIAMOND_BOOTS))
+		else if ((type == Material.LEATHER_BOOTS) || (type == Material.IRON_BOOTS) || (type == Material.GOLD_BOOTS) || (type == Material.DIAMOND_BOOTS) || type == Material.CHAINMAIL_BOOTS)
 			blocksUsed = 4;
-		else if ((type == Material.LEATHER_HELMET) || (type == Material.IRON_HELMET) || (type == Material.GOLD_HELMET) || (type == Material.DIAMOND_HELMET))
+		else if ((type == Material.LEATHER_HELMET) || (type == Material.IRON_HELMET) || (type == Material.GOLD_HELMET) || (type == Material.DIAMOND_HELMET) || type == Material.CHAINMAIL_HELMET)
 			blocksUsed = 5;
-		else if ((type == Material.LEATHER_LEGGINGS) || (type == Material.IRON_LEGGINGS) || (type == Material.GOLD_LEGGINGS) || (type == Material.DIAMOND_LEGGINGS))
+		else if ((type == Material.LEATHER_LEGGINGS) || (type == Material.IRON_LEGGINGS) || (type == Material.GOLD_LEGGINGS) || (type == Material.DIAMOND_LEGGINGS) || type == Material.CHAINMAIL_LEGGINGS)
 			blocksUsed = 7;
-		else if ((type == Material.LEATHER_CHESTPLATE) || (type == Material.IRON_CHESTPLATE) || (type == Material.GOLD_CHESTPLATE) || (type == Material.DIAMOND_CHESTPLATE)) {
+		else if ((type == Material.LEATHER_CHESTPLATE) || (type == Material.IRON_CHESTPLATE) || (type == Material.GOLD_CHESTPLATE) || (type == Material.DIAMOND_CHESTPLATE) || type == Material.CHAINMAIL_CHESTPLATE) {
 			blocksUsed = 8;
 		}
 		return blocksUsed;
@@ -330,7 +359,7 @@ public class BPlayerListener implements Listener {
 				amt = amt + is.getAmount();
 			}
 		}
-		plugin.getLogger().log(Level.WARNING, amt + " " + req);
+		
 		if(amt >= req)
 			return true;
 		
