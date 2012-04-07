@@ -31,6 +31,7 @@ public class BlackSmith extends JavaPlugin
 	public static int ironBase = 100;
 	public static int goldBase = 75;
 	public static int diamondBase = 200;
+	public static int chainBase = 600;
 	
 	@Override
 	public void onDisable()
@@ -58,6 +59,9 @@ public class BlackSmith extends JavaPlugin
 	 
 	 baseTmp = this.config.getInt("BlackSmith.Prices.diamondbase");
 	 if(baseTmp > 0) diamondBase = baseTmp;
+	 
+	 baseTmp = this.config.getInt("BlackSmith.Prices.chainbase");
+	 if(baseTmp > 0) chainBase = baseTmp;
 	 
 	 String ecoEn = this.config.getString("BlackSmith.global.ecoEngine");
 	 if(ecoEn == null) {

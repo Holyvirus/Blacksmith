@@ -5,5 +5,6 @@ BlackSmith:
         ironbase: 60
         goldbase: 50
         diamondbase: 200
+        chainbase: 600
     global:
         ecoEngine: BOSECONOMY
