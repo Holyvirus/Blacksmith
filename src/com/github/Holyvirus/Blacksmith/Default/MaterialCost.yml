@@ -1,0 +1,12 @@
+Material:
+    ironsword:
+        iron: 1
+        stick: 1
+    ironchest:
+        iron: 4
+    ironhelmet:
+        iron: 2
+    ironshovel:
+        stick: 1
+    enchantmentModifier:
+        blaze: 1
