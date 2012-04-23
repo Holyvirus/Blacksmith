@@ -74,9 +74,17 @@ public class BlackSmith extends JavaPlugin {
 				
 			}
 			
-			permHandler = new PermHandler(this, conf.getString("BlackSmith.permissions.Engine"));
+			if(conf.getBoolean("BlackSmith.permissions.usePermissions")) {
+				permHandler = new PermHandler(this, conf.getString("BlackSmith.permissions.Engine"), conf.getBoolean("BlackSmith.permissions.opHasPerms"));
+			}else{
+				permHandler = new PermHandler(this, "NOPERM", true);
+			}
 			//msgHandler = new Messages(this);
 			
+			if(!permHandler.isEnabled()) {
+				log.log(Level.WARNING, "[" + this.name + "] Could not load permissions engine yet!");
+				log.log(Level.WARNING, "[" + this.name + "] Errors might occur if you do not see '[" + name + "]Successfully hooked into (whichever)!' after this message!");
+			}
 			if(econHandler.isLoaded()) {
 				log.log(Level.INFO, "[" + this.name + "](" + this.bName + ") Was successfully enabled!");
 			}else{
