@@ -10,7 +10,7 @@ public class Eco {
 	
 	private iEco Engine = null;
 	private BlackSmith plugin;
-	Engines engine;
+	private Engines engine;
 	
 	public enum Engines {
 		AECO,
