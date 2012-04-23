@@ -2,6 +2,7 @@ package com.github.Holyvirus.Blacksmith;
 
 import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
+import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 
 import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
@@ -20,6 +21,7 @@ public class BlackSmith extends JavaPlugin {
 	private static BlackSmith plugin;
 	private static Server Server;
 	private Eco econHandler;
+	private PermHandler permHandler;
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
 	
@@ -72,6 +74,7 @@ public class BlackSmith extends JavaPlugin {
 				
 			}
 			
+			permHandler = new PermHandler(this, conf.getString("BlackSmith.permissions.Engine"));
 			//msgHandler = new Messages(this);
 			
 			if(econHandler.isLoaded()) {
@@ -107,6 +110,10 @@ public class BlackSmith extends JavaPlugin {
 	
 	public Eco getEcoHandler() {
 		return this.econHandler;
+	}
+	
+	public PermHandler getPermHandler() {
+		return this.permHandler;
 	}
 	
 	public static BlackSmith getPlugin() {
