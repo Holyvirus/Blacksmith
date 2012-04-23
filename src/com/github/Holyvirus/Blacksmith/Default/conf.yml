@@ -1,0 +1,22 @@
+BlackSmith:
+    global:
+        version: 0.1
+        name: BlackSmith
+        debug: true
+    permissions:
+        usePermissions: true
+        opHasPerms: true
+        permissionsEngine: sperm
+    Economy:
+        type: HYBRID
+        Engine: ICONOMY6
+    Prices:
+        leatherblock: 5
+        woodblock: 10
+        stoneblock: 20
+        ironblock: 30
+        goldblock: 60
+        diamondblock: 200
+        chainblock: 600
+        enchantmentModifier: 2
+        
