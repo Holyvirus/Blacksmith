@@ -12,7 +12,8 @@ public class PermHandler {
 	public enum Engines {
 		GROUP_MANAGER,
 		PERMISSIONSEX,
-		SPERM
+		SPERM,
+		NOPERM
 	}
 	
 	private boolean packageExists(String...Packages) {
@@ -33,29 +34,34 @@ public class PermHandler {
 			return Engines.PERMISSIONSEX;
 		}else if(engine.equalsIgnoreCase("SPERM")) {
 			return Engines.SPERM;
+		}else if(engine.equalsIgnoreCase("NOPERM")) {
+			return Engines.NOPERM;
 		}
 		
 		return null;
 	}
 	
-	public PermHandler(BlackSmith plugin, String engine) {
+	public PermHandler(BlackSmith plugin, String engine, Boolean opHasPerms) {
 		this.plugin = plugin;
 		this.engine = this.findEngine(engine);
 		
 		switch(this.engine) {
 			case GROUP_MANAGER:
 				if(packageExists("org.anjocaido.groupmanager.GroupManager")) {
-					this.Engine = new gmEngine(this.plugin);
+					this.Engine = new gmEngine(this.plugin, opHasPerms);
 				}
 				break;
 			case PERMISSIONSEX:
 				if(packageExists("ru.tehkode.permissions.bukkit.PermissionsEx")) {
-					this.Engine = new pexEngine(this.plugin);
+					this.Engine = new pexEngine(this.plugin, opHasPerms);
 				}
+				break;
+			case NOPERM:
+				this.Engine = new npEngine(this.plugin, opHasPerms);
 				break;
 			case SPERM:
 			default:
-				this.Engine = new spermEngine(this.plugin);
+				this.Engine = new spermEngine(this.plugin, opHasPerms);
 				break;
 		}
 	}
