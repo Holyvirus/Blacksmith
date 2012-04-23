@@ -6,7 +6,6 @@ import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
 import org.bukkit.Server;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.Plugin;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +23,7 @@ public class BlackSmith extends JavaPlugin {
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
 	
+	//Clear this out later
 	public static int woodBase = 20;
 	public static int stoneBase = 50;
 	public static int ironBase = 100;
@@ -65,9 +65,11 @@ public class BlackSmith extends JavaPlugin {
 				econHandler = new Eco(this, conf.getString("BlackSmith.Economy.Engine"));
 				if(conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("HYBRID")) {
 					//set up materials aswell
+					
 				}
 			}else{
 				//use materials instead
+				
 			}
 			
 			//msgHandler = new Messages(this);
@@ -76,11 +78,11 @@ public class BlackSmith extends JavaPlugin {
 				log.log(Level.INFO, "[" + this.name + "](" + this.bName + ") Was successfully enabled!");
 			}else{
 				log.log(Level.WARNING, "[" + this.name + "] Could not load economy engine yet!");
-				log.log(Level.WARNING, "[" + this.name + "] Errors might occur if you do not see '[GiantShop]Successfully hooked into (whichever) Engine!' after this message!");
+				log.log(Level.WARNING, "[" + this.name + "] Errors might occur if you do not see '[" + name + "]Successfully hooked into (whichever) Engine!' after this message!");
 			}
 		}catch(Exception e) {
 			log.log(Level.SEVERE, "[" + this.name + "](" + this.bName + ") Failed to load!");
-			if(conf.getBoolean("GiantShop.global.debug"))
+			if(conf.getBoolean("BlackSmith.global.debug"))
 				log.log(Level.INFO, "" + e);
 			Server.getPluginManager().disablePlugin(this);
 		}
@@ -88,7 +90,7 @@ public class BlackSmith extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		log.log(Level.INFO, "[" + this.name + "] Was successfully dissabled!");
+		log.log(Level.INFO, "[" + this.name + "] Was successfully disabled!");
 	}
 	
 	public String getPluginName() {
@@ -118,7 +120,7 @@ public class BlackSmith extends JavaPlugin {
 	private void extractDefaultFile(String file) {
 		File configFile = new File(getDataFolder(), file);
 		if (!configFile.exists()) {
-			InputStream input = this.getClass().getResourceAsStream("/com/github/Holyvirus/Blacksmith/Default/" + file);
+			InputStream input = this.getClass().getResourceAsStream("/com/github/Holyvirus/" + name + "/Default/" + file);
 			if (input != null) {
 				FileOutputStream output = null;
 
