@@ -5,7 +5,6 @@ import com.github.Holyvirus.Blacksmith.core.perms.Engines.*;
 
 public class PermHandler {
 
-//D:\Program Files\Java\jdk1.6.0_26
 	private Permission Engine = null;
 	private BlackSmith plugin;
 	private Engines engine;
@@ -50,10 +49,13 @@ public class PermHandler {
 				}
 				break;
 			case PERMISSIONSEX:
+				if(packageExists("ru.tehkode.permissions.bukkit.PermissionsEx")) {
+					this.Engine = new pexEngine(this.plugin);
+				}
 				break;
 			case SPERM:
-				break;
 			default:
+				this.Engine = new spermEngine(this.plugin);
 				break;
 		}
 	}
