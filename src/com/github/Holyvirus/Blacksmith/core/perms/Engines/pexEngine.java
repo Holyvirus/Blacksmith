@@ -20,9 +20,11 @@ public class pexEngine implements Permission {
 
 	private BlackSmith plugin;
 	private PermissionsEx permission;
+	private Boolean opHasPerms;
 	
-	public pexEngine(BlackSmith plugin) {
+	public pexEngine(BlackSmith plugin, Boolean opHasPerms) {
 		this.plugin = plugin;
+		this.opHasPerms = opHasPerms;
 		
 		Plugin perms = plugin.getServer().getPluginManager().getPlugin("PermissionsEx");
         if (perms != null && perms.isEnabled()) {
@@ -45,6 +47,9 @@ public class pexEngine implements Permission {
 
 	@Override
 	public boolean has(Player p, String perm) {
+		if(opHasPerms && p.isOp())
+			return true;
+		
 		return permission.has(p, perm);
 	}
 	
@@ -59,6 +64,9 @@ public class pexEngine implements Permission {
 
 	@Override
 	public boolean has(Player p, String perm, String world) {
+		if(opHasPerms && p.isOp())
+			return true;
+		
 		return permission.has(p, perm, world);
 	}
 

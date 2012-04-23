@@ -22,9 +22,11 @@ public class gmEngine implements Permission {
 
 	private BlackSmith plugin;
 	private GroupManager permission;
+	private Boolean opHasPerms;
 	
-	public gmEngine(BlackSmith plugin) {
+	public gmEngine(BlackSmith plugin, Boolean opHasPerms) {
 		this.plugin = plugin;
+		this.opHasPerms = opHasPerms;
 		
 		Plugin perms = plugin.getServer().getPluginManager().getPlugin("GroupManager");
         if (perms != null && perms.isEnabled()) {
@@ -47,6 +49,9 @@ public class gmEngine implements Permission {
 
 	@Override
 	public boolean has(Player p, String perm) {
+		if(opHasPerms && p.isOp())
+			return true;
+		
 		AnjoPermissionsHandler h = permission.getWorldsHolder().getWorldPermissionsByPlayerName(p.getName());
 		if(h != null) 
 			return h.has(p, perm);
@@ -65,6 +70,9 @@ public class gmEngine implements Permission {
 
 	@Override
 	public boolean has(Player p, String perm, String world) {
+		if(opHasPerms && p.isOp())
+			return true;
+		
 		AnjoPermissionsHandler h = permission.getWorldsHolder().getWorldPermissions(world);
 		if(h != null) 
 			return h.has(p, perm);

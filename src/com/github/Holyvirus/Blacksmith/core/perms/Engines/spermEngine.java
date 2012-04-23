@@ -10,9 +10,12 @@ import java.util.logging.Level;
 public class spermEngine implements Permission {
 
 	private BlackSmith plugin;
+	private Boolean opHasPerms;
 	
-	public spermEngine(BlackSmith plugin) {
+	public spermEngine(BlackSmith plugin, Boolean opHasPerms) {
 		this.plugin = plugin;
+		this.opHasPerms = opHasPerms;
+		
 		plugin.getLogger().log(Level.INFO, "Now using Bukkit SuperPerms!");
 	}
 	
@@ -27,6 +30,9 @@ public class spermEngine implements Permission {
 
 	@Override
 	public boolean has(Player p, String perm) {
+		if(opHasPerms && p.isOp())
+			return true;
+		
 		return p.hasPermission(perm);
 	}
 	
@@ -41,6 +47,9 @@ public class spermEngine implements Permission {
 
 	@Override
 	public boolean has(Player p, String perm, String world) {
+		if(opHasPerms && p.isOp())
+			return true;
+		
 		return p.hasPermission(world);
 	}
 
