@@ -1,0 +1,11 @@
+- Remake PlayerListener
+- Remake BlockListener
+- Implement proper permissions system
+- Implement "Items" from GiantShop 2.0
+- Finish MaterialCost (uses "Items")
+- Make a method calculating extra cost for enchantments
+- Update price cost calculation to respect enchantment costs
+- Implement a proper debug mode, enables kill sign
+- Possibly add a nice block that acts as anvill instead of sign
+- Finish recode of BlackSmith 2.0
+- If time left redo pricing entirely, so it can be set per item, like materials
