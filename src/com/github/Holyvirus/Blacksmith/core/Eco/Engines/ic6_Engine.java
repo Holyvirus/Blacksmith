@@ -101,12 +101,13 @@ public class ic6_Engine implements iEco {
 		@EventHandler()
 		public void onPluginEnable(PluginEnableEvent event) {
 			if(eco.eco == null) {
-				Plugin ecoEn = plugin.getServer().getPluginManager().getPlugin("iConomy");
-				
-				if(ecoEn != null && ecoEn.isEnabled() && ecoEn.getClass().getName().equals("com.iCo6.iConomy")) {
-					eco.eco = (iConomy) ecoEn;
-					eco.accs = new Accounts();
-					plugin.getLogger().log(Level.INFO, "Succesfully hooked into iConomy 6!");
+				Plugin ecoEn = event.getPlugin();
+				if(ecoEn instanceof iConomy) {
+					if(ecoEn != null && ecoEn.isEnabled() && ecoEn.getClass().getName().equals("com.iCo6.iConomy")) {
+						eco.eco = (iConomy) ecoEn;
+						eco.accs = new Accounts();
+						plugin.getLogger().log(Level.INFO, "Succesfully hooked into iConomy 6!");
+					}
 				}
 			}
 		}
