@@ -6,7 +6,7 @@ BlackSmith:
     permissions:
         usePermissions: true
         opHasPerms: true
-        permissionsEngine: sperm
+        Engine: SPERM
     Economy:
         type: HYBRID
         Engine: ICONOMY6
