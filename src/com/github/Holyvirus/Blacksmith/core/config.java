@@ -29,7 +29,7 @@ public class config {
 		this.file = file;
 		this.configuration = YamlConfiguration.loadConfiguration(this.file);
 		
-		double v = this.getDouble("GiantShop.global.version");
+		double v = this.getDouble("BlackSmith.global.version");
 		if(v < this.yamlVersion) {
 			BlackSmith.getPlugin().getLogger().log(Level.INFO, "Your conf.yml has ran out of date. Updating now!");
 			File oconfigFile = new File(BlackSmith.getPlugin().getDir(), "conf.yml." + v + ".bak");
