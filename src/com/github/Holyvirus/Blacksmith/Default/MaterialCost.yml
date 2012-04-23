@@ -1,12 +1,97 @@
 Material:
-    ironsword:
-        iron: 1
+    woodpick:
+        wood: 1
+    woodshovel:
         stick: 1
-    ironchest:
-        iron: 4
-    ironhelmet:
-        iron: 2
+    woodaxe:
+        wood: 1
+    woodsword:
+        wood: 1
+    leathercap:
+        leather: 2
+    leathertunic:
+        leather: 4
+    leatherpants:
+        leather: 1
+    leatherboots:
+        leather: 1
+    stonepick:
+        stone: 1
+    stoneshovel:
+        stick: 1
+    stoneaxe:
+        stone: 1
+    stonesword:
+        stone: 1
+    stonehelmet:
+        stone: 2
+    stonechest:
+        stone: 4
+    stonepants:
+        stone: 2
+    stoneboots:
+        stone: 2
+    ironpick:
+        iron: 1
     ironshovel:
         stick: 1
+    ironaxe:
+        iron: 1
+    ironsword:
+        iron: 1
+    ironhelmet:
+        iron: 2
+    ironchest:
+        iron: 4
+    ironpants:
+        iron: 2
+    ironboots:
+        iron: 2
+    goldpick:
+        gold: 1
+    goldshovel:
+        stick: 1
+    goldaxe:
+        gold: 1
+    goldsword:
+        gold: 1
+    goldhelmet:
+        gold: 2
+    goldchest:
+        gold: 4
+    goldpants:
+        gold: 2
+    goldboots:
+        gold: 2
+    diamondpick:
+        diamond: 1
+    diamondshovel:
+        stick: 1
+    diamondaxe:
+        diamond: 1
+    diamondsword:
+        diamond: 1
+    diamondhelmet:
+        diamond: 2
+    diamondchest:
+        diamond: 4
+    diamondpants:
+        diamond: 2
+    diamondboots:
+        diamond: 2
+    chainhelmet:
+        diamond: 4
+    chainchest:
+        diamond: 8
+    chainpants:
+        diamond: 4
+    chainboots:
+        diamond: 4
+    bow:
+        wood: 4
+    flint:
+        iron: 1
+	fishingrod:
+        wood: 4
     enchantmentModifier:
         blaze: 1
