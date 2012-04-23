@@ -20,7 +20,7 @@ public class config {
 	
 	private YamlConfiguration configuration;
 	private File file;
-	private double yamlVersion = 0.6;
+	private double yamlVersion = 0.1;
 	
 	private config() {
 	}
