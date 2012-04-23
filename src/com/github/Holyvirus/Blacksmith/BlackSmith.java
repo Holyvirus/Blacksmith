@@ -91,6 +91,18 @@ public class BlackSmith extends JavaPlugin {
 		log.log(Level.INFO, "[" + this.name + "] Was successfully dissabled!");
 	}
 	
+	public String getPluginName() {
+		return this.name;
+	}
+	
+	public String getPubName() {
+		return this.pubName;
+	}
+	
+	public String getDir() {
+		return this.dir;
+	}
+	
 	public Eco getEcoHandler() {
 		return this.econHandler;
 	}
