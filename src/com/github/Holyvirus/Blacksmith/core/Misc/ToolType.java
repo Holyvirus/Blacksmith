@@ -62,5 +62,6 @@ public enum ToolType {
 	CHAIN_BOOT,
 	
 	FISHING_ROD,
-	BOW
+	BOW,
+	FLIT_AND_STEEL
 }
