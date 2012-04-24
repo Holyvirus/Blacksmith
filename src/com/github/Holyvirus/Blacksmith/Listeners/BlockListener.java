@@ -5,6 +5,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
 
@@ -13,7 +14,7 @@ import com.github.Holyvirus.Blacksmith.core.Tools.Sign.SignType;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.SignValidator;
 import com.github.Holyvirus.Blacksmith.core.perms.Permission;
 
-public class BlockListener {
+public class BlockListener implements Listener{
 
 	private BlackSmith plugin;
 	private Permission pH;
