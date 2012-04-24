@@ -48,7 +48,13 @@ public class PlayerListener implements Listener {
 						break;
 					case REPAIR:
 						if(pH.has(p, "blacksmith.use.repair")) {
-							
+							Material m = Misc.getType(event.getItem());
+							if(m != null) {
+								event.getItem().setDurability((short) 0);
+								p.sendMessage(ChatColor.GREEN + "Tool repaired!");
+							}else{
+								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+							}
 						}else{
 							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
 						}
@@ -57,7 +63,13 @@ public class PlayerListener implements Listener {
 						config c = config.Obtain();
 						if(c.getBoolean("BlackSmith.global.debug")) {
 							if(pH.has(p, "blacksmith.use.kill")) {
-								
+								Material m = Misc.getType(event.getItem());
+								if(m != null) {
+									event.getItem().setDurability((short) (event.getItem().getType().getMaxDurability() - 1));
+									p.sendMessage(ChatColor.GREEN + "Tool killed!");
+								}else{
+									p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+								}
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
 							}
