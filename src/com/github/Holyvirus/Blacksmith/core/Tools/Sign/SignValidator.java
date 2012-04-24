@@ -9,7 +9,7 @@ public class SignValidator {
 		return s.equalsIgnoreCase("[BlackSmith]");
 	}
 	
-	public static SignType getType(String s) {
+	private static SignType getType(String s) {
 		if(s.equalsIgnoreCase("VALUE")) {
 			return SignType.VALUE;
 		}else if(s.equalsIgnoreCase("REPAIR")) {
