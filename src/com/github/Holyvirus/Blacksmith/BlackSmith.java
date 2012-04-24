@@ -80,7 +80,8 @@ public class BlackSmith extends JavaPlugin {
 				permHandler = new PermHandler(this, "NOPERM", true);
 			}
 			//msgHandler = new Messages(this);
-			
+
+			getServer().getPluginManager().registerEvents(new BlockListener(this), this);
 			getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
 			
 			if(!permHandler.isEnabled()) {
