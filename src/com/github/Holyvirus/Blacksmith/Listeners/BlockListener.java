@@ -30,7 +30,7 @@ public class BlockListener implements Listener{
 		SignType st = SignValidator.getType((Sign) event);
 		switch(st) {
 			case VALUE:
-				if(pH.has(player, "blacksmith.place.value")){
+				if(!pH.has(player, "blacksmith.place.value")){
 					event.setCancelled(true);
 			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Value sign!");
 			          event.getBlock().breakNaturally();
@@ -39,7 +39,7 @@ public class BlockListener implements Listener{
 				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Value sign!");
 		          break;
 			case REPAIR:
-				if(pH.has(player, "blacksmith.place.repair")){
+				if(!pH.has(player, "blacksmith.place.repair")){
 					event.setCancelled(true);
 			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Repair sign!");
 			          event.getBlock().breakNaturally();
@@ -48,7 +48,7 @@ public class BlockListener implements Listener{
 				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Repair sign!");
 		          break;
 			case KILL:
-				if(pH.has(player, "blacksmith.place.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
+				if(!pH.has(player, "blacksmith.place.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
 					event.setCancelled(true);
 			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
 			          event.getBlock().breakNaturally();
@@ -72,7 +72,7 @@ public class BlockListener implements Listener{
 			player = event.getPlayer();
 			switch(st) {
 				case VALUE:
-					if(pH.has(player, "blacksmith.remove.value")) {
+					if(!pH.has(player, "blacksmith.remove.value")) {
 						event.setCancelled(true);
 				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Value sign!");
 				          localSign.update();
@@ -81,7 +81,7 @@ public class BlockListener implements Listener{
 					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Value sign!");
 			          break;
 				case REPAIR:
-					if(pH.has(player, "blacksmith.remove.repair")) {
+					if(!pH.has(player, "blacksmith.remove.repair")) {
 						event.setCancelled(true);
 				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Repair sign!");
 				          localSign.update();
@@ -90,7 +90,7 @@ public class BlockListener implements Listener{
 					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Repair sign!");
 			          break;
 				case KILL:
-					if(pH.has(player, "blacksmith.remove.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
+					if(!pH.has(player, "blacksmith.remove.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
 						event.setCancelled(true);
 				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
 				          localSign.update();
