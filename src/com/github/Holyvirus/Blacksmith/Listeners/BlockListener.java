@@ -18,12 +18,10 @@ public class BlockListener implements Listener{
 
 	private BlackSmith plugin;
 	private Permission pH;
-	private Permission perm;
 	
 	public BlockListener(BlackSmith plugin) {
 		this.plugin = plugin;
 		this.pH = plugin.getPermHandler().getEngine();
-		this.perm = plugin.getPermHandler().getEngine();
 	}
 	
 	@EventHandler
