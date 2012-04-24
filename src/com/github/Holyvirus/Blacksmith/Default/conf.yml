@@ -11,12 +11,12 @@ BlackSmith:
         type: HYBRID
         Engine: ICONOMY6
     Prices:
-        leatherblock: 5
-        woodblock: 10
-        stoneblock: 20
-        ironblock: 30
-        goldblock: 60
-        diamondblock: 200
-        chainblock: 600
+        leatherbase: 5
+        woodbase: 10
+        stonebase: 20
+        ironbase: 30
+        goldbase: 60
+        diamondbase: 200
+        chainbase: 600
         enchantmentModifier: 2
         
