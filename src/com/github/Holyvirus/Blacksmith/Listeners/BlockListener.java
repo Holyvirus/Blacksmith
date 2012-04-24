@@ -27,7 +27,7 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void signChanged(SignChangeEvent event){
 		Player player = event.getPlayer();
-		SignType st = SignValidator.getType((Sign) event);
+		SignType st = SignValidator.getType(event);
 		switch(st) {
 			case VALUE:
 				if(!pH.has(player, "blacksmith.place.value")){
