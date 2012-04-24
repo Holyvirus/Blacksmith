@@ -10,14 +10,12 @@ public class SignValidator {
 	}
 	
 	public static SignType getType(String s) {
-		if(isBlackSmithSign(s)) {
-			if(s.equalsIgnoreCase("VALUE")) {
-				return SignType.VALUE;
-			}else if(s.equalsIgnoreCase("REPAIR")) {
-				return SignType.REPAIR;
-			}else if(s.equalsIgnoreCase("KILL")) {
-				return SignType.KILL;
-			}
+		if(s.equalsIgnoreCase("VALUE")) {
+			return SignType.VALUE;
+		}else if(s.equalsIgnoreCase("REPAIR")) {
+			return SignType.REPAIR;
+		}else if(s.equalsIgnoreCase("KILL")) {
+			return SignType.KILL;
 		}
 		
 		return SignType.INVALID;
@@ -32,10 +30,17 @@ public class SignValidator {
 	}
 	
 	public static SignType getType(Sign s) {
-		return getType(s.getLine(1));
+		if(isBlackSmithSign(s.getLine(0)))
+			return getType(s.getLine(1));
+		
+		return SignType.INVALID;
+			
 	}
 	
 	public static SignType getType(SignChangeEvent s) {
-		return getType(s.getLine(1));
+		if(isBlackSmithSign(s.getLine(0)))
+			return getType(s.getLine(1));
+		
+		return SignType.INVALID;
 	}
 }
