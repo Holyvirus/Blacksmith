@@ -68,7 +68,7 @@ public class BlockListener implements Listener{
 		Block b = event.getBlock();
 		if(b.getState() instanceof Sign) {
 			Sign localSign = (Sign)b.getState();
-			SignType st = SignValidator.getType((Sign) b.getState());
+			SignType st = SignValidator.getType(localSign);
 			player = event.getPlayer();
 			switch(st) {
 				case VALUE:
