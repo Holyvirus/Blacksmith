@@ -138,7 +138,6 @@ public class Cost {
 			cost = e * (b * ((double) i.getDurability() / (double) i.getType().getMaxDurability() * u));
 		}
 
-		p.sendMessage("" + cost);
-		return cost;
+		return Misc.Round(cost, 2);
 	}
 }
