@@ -25,14 +25,6 @@ public class BlackSmith extends JavaPlugin {
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
 	
-	//Clear this out later
-	public static int woodBase = 20;
-	public static int stoneBase = 50;
-	public static int ironBase = 100;
-	public static int goldBase = 75;
-	public static int diamondBase = 200;
-	public static int chainBase = 600;
-	
 	private void setPlugin() {
 		plugin = this;
 	}
