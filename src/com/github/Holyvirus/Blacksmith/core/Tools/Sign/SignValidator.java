@@ -14,6 +14,8 @@ public class SignValidator {
 			return SignType.VALUE;
 		}else if(s.equalsIgnoreCase("REPAIR")) {
 			return SignType.REPAIR;
+		}else if(s.equalsIgnoreCase("FREE")) {
+			return SignType.FREE;
 		}else if(s.equalsIgnoreCase("KILL")) {
 			return SignType.KILL;
 		}
