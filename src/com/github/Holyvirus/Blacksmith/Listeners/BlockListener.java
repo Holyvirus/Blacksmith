@@ -10,6 +10,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
 
 import com.github.Holyvirus.Blacksmith.BlackSmith;
+import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.SignType;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.SignValidator;
 import com.github.Holyvirus.Blacksmith.core.perms.Permission;
@@ -18,6 +19,7 @@ public class BlockListener implements Listener{
 
 	private BlackSmith plugin;
 	private Permission pH;
+	config conf = config.Obtain();
 	
 	public BlockListener(BlackSmith plugin) {
 		this.plugin = plugin;
@@ -49,7 +51,7 @@ public class BlockListener implements Listener{
 				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Repair sign!");
 		          break;
 			case KILL:
-				if(!pH.has(player, "blacksmith.place.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
+				if(!pH.has(player, "blacksmith.place.kill") || (!conf.getBoolean("BlackSmith.global.debug"))){
 					event.setCancelled(true);
 			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
 			          event.getBlock().breakNaturally();
@@ -101,7 +103,7 @@ public class BlockListener implements Listener{
 					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Repair sign!");
 			          break;
 				case KILL:
-					if(!pH.has(player, "blacksmith.remove.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
+					if(!pH.has(player, "blacksmith.remove.kill")){
 						event.setCancelled(true);
 				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Kill sign!");
 				          localSign.update();
