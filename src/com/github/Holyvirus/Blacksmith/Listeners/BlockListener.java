@@ -118,10 +118,6 @@ public class BlockListener implements Listener{
 					}
 					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Free sign!");
 			          break;
-				case INVALID:
-					player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either ''Value'' or ''Repair'' into the second line!");
-					localSign.update();
-			          return;
 			}
 		}
 	}
