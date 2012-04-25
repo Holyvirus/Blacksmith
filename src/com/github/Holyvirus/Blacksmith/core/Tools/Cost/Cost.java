@@ -3,9 +3,14 @@ package com.github.Holyvirus.Blacksmith.core.Tools.Cost;
 import com.github.Holyvirus.Blacksmith.BlackSmith;
 import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.iEco;
+import com.github.Holyvirus.Blacksmith.core.Misc.Misc;
+import com.github.Holyvirus.Blacksmith.core.Misc.ToolType;
 
 import org.bukkit.entity.Player;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Map;
 
 public class Cost {
 
@@ -34,16 +39,67 @@ public class Cost {
 		if(null != BlackSmith.getPlugin().getEcoHandler())
 			eH = BlackSmith.getPlugin().getEcoHandler().getEngine();
 	}
+
+	public static double calcEnchantmentModifier(ItemStack i) {
+		if(i == null)
+			return 1;
+		
+		config conf = config.Obtain();
+		double modifier = 1;
+		
+		Map<Enchantment, Integer> ench = i.getEnchantments();
+		if(ench.size() > 0) {
+			for(Map.Entry<Enchantment, Integer> entry : ench.entrySet()) {
+				modifier = modifier + conf.getDouble("BlackSmith.Prices.enchantmentModifier") / 100;
+			}
+		}
+		
+		return modifier;
+	}
 	
-	public static int calcCost(Player p, ItemStack i) {
+	public static double calcCost(Player p, ItemStack i) {
 		if(i == null)
 			return 0;
 		
 		if(FC)
 			init();
 		
+		double b = 0D;
+		
+		ToolType t = Misc.getKind(i);
+		switch(t) {
+			case LEATHER:
+				b = leatherBase;
+				break;
+			case WOOD:
+				b = woodBase;
+				break;
+			case STONE:
+				b = stoneBase;
+				break;
+			case IRON:
+				b = ironBase;
+				break;
+			case GOLD:
+				b = goldBase;
+				break;
+			case DIAMOND:
+				b = diamondBase;
+				break;
+			case CHAIN:
+				b = chainBase;
+				break;
+			case INVALID:
+				return 0;
+		}
+		
+		if(b == 0D)
+			return 0;
+		
+		double eM = calcEnchantmentModifier(i);
 		
 		
-		return 0;
+		
+		return b;
 	}
 }
