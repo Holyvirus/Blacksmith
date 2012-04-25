@@ -49,8 +49,9 @@ public class Cost {
 		
 		Map<Enchantment, Integer> ench = i.getEnchantments();
 		if(ench.size() > 0) {
+			double em = conf.getDouble("BlackSmith.Prices.enchantmentModifier");
 			for(Map.Entry<Enchantment, Integer> entry : ench.entrySet()) {
-				modifier = modifier + conf.getDouble("BlackSmith.Prices.enchantmentModifier") / 100;
+				modifier = modifier + em * entry.getValue() / 100D;
 			}
 		}
 		
