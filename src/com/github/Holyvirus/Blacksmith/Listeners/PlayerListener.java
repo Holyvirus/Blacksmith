@@ -37,7 +37,7 @@ public class PlayerListener implements Listener {
 				switch(st) {
 					case VALUE:
 						if(pH.has(p, "blacksmith.use.value")) {
-							Material m = Misc.getType(event.getItem());
+							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
 								p.sendMessage(ChatColor.BLUE + "It will cost you " + Cost.calcCost(p, event.getItem()) + " to repair!");
 							}else{
@@ -49,7 +49,7 @@ public class PlayerListener implements Listener {
 						break;
 					case REPAIR:
 						if(pH.has(p, "blacksmith.use.repair")) {
-							Material m = Misc.getType(event.getItem());
+							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
 								//String s = Cost.Take(p, event.getItem();
 								//if(null == s) {
@@ -67,7 +67,7 @@ public class PlayerListener implements Listener {
 						break;
 					case FREE:
 						if(pH.has(p, "blacksmith.use.free")) {
-							Material m = Misc.getType(event.getItem());
+							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
 								event.getItem().setDurability((short) 0);
 								p.sendMessage(ChatColor.GREEN + "Tool repaired!");
@@ -82,7 +82,7 @@ public class PlayerListener implements Listener {
 						config c = config.Obtain();
 						if(c.getBoolean("BlackSmith.global.debug")) {
 							if(pH.has(p, "blacksmith.use.kill")) {
-								Material m = Misc.getType(event.getItem());
+								Material m = Misc.getMatType(event.getItem());
 								if(m != null) {
 									event.getItem().setDurability((short) (event.getItem().getType().getMaxDurability() - 1));
 									p.sendMessage(ChatColor.GREEN + "Tool killed!");
