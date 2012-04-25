@@ -51,7 +51,7 @@ public class BlockListener implements Listener{
 				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Repair sign!");
 		          break;
 			case KILL:
-				if(!pH.has(player, "blacksmith.place.kill") || (!conf.getBoolean("BlackSmith.global.debug"))){
+				if(!pH.has(player, "blacksmith.place.kill") || !conf.getBoolean("BlackSmith.global.debug")){
 					event.setCancelled(true);
 			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
 			          event.getBlock().breakNaturally();
