@@ -26,6 +26,37 @@ public class Cost {
 	private static int diamondBase = 200;
 	private static int chainBase = 600;
 	
+	private static double getUsedBlocks(ItemStack i) {
+		if(i == null)
+			return 1;
+		
+		ToolType t = Misc.getType(i);
+		switch(t) {
+			case SPADE:
+			case FLINT_AND_STEEL:
+			case ROD:
+				return 1;
+			case SWORD:
+			case HOE:
+			case BOW:
+			case SHEARS:
+				return 2;
+			case AXE:
+			case PICKAXE:
+				return 3;
+			case BOOT:
+				return 4;
+			case HELMET:
+				return 5;
+			case LEG:
+				return 6;
+			case CHEST:
+				return 7;
+		}
+		
+		return 1;
+	}
+	
 	private static void init() {
 		FC = false;
 		leatherBase = cH.getInt("BlackSmith.Prices.leatherbase");
@@ -99,7 +130,8 @@ public class Cost {
 		if(b == 0D)
 			return 0;
 		
-		double eM = calcEnchantmentModifier(i);
+		double e = calcEnchantmentModifier(i);
+		double u = getUsedBlocks(i);
 		
 		
 		
