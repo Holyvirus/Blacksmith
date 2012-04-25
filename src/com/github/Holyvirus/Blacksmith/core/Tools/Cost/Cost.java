@@ -136,7 +136,6 @@ public class Cost {
 			double e = calcEnchantmentModifier(i);
 			double u = getUsedBlocks(i);
 			cost = e * (b * ((double) i.getDurability() / (double) i.getType().getMaxDurability() * u));
-			p.sendMessage(e + " * (" + b + " * (" + i.getDurability() + " / " + i.getType().getMaxDurability() + " * " + u + "))");
 		}
 
 		p.sendMessage("" + cost);
