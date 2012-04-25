@@ -18,13 +18,13 @@ public class Cost {
 //  private static MatEn me = BlackSmith.getPlugin().getMatEngine();
 	private static config cH = config.Obtain();
 	private static boolean FC = true;
-	private static int leatherBase = 5;
-	private static int woodBase = 20;
-	private static int stoneBase = 50;
-	private static int ironBase = 100;
-	private static int goldBase = 75;
-	private static int diamondBase = 200;
-	private static int chainBase = 600;
+	private static double leatherBase = 5;
+	private static double woodBase = 20;
+	private static double stoneBase = 50;
+	private static double ironBase = 100;
+	private static double goldBase = 75;
+	private static double diamondBase = 200;
+	private static double chainBase = 600;
 	
 	private static double getUsedBlocks(ItemStack i) {
 		if(i == null)
@@ -59,13 +59,13 @@ public class Cost {
 	
 	private static void init() {
 		FC = false;
-		leatherBase = cH.getInt("BlackSmith.Prices.leatherbase");
-		woodBase = cH.getInt("BlackSmith.Prices.woodbase");
-		stoneBase = cH.getInt("BlackSmith.Prices.stonebase");
-		ironBase = cH.getInt("BlackSmith.Prices.ironbase");
-		goldBase = cH.getInt("BlackSmith.Prices.goldbase");
-		diamondBase = cH.getInt("BlackSmith.Prices.diamondbase");
-		chainBase = cH.getInt("BlackSmith.Prices.chainbase");
+		leatherBase = cH.getDouble("BlackSmith.Prices.leatherbase");
+		woodBase = cH.getDouble("BlackSmith.Prices.woodbase");
+		stoneBase = cH.getDouble("BlackSmith.Prices.stonebase");
+		ironBase = cH.getDouble("BlackSmith.Prices.ironbase");
+		goldBase = cH.getDouble("BlackSmith.Prices.goldbase");
+		diamondBase = cH.getDouble("BlackSmith.Prices.diamondbase");
+		chainBase = cH.getDouble("BlackSmith.Prices.chainbase");
 		
 		if(null != BlackSmith.getPlugin().getEcoHandler())
 			eH = BlackSmith.getPlugin().getEcoHandler().getEngine();
@@ -99,6 +99,7 @@ public class Cost {
 			init();
 		
 		double b = 0D;
+		double cost = 0D;
 		
 		ToolType t = Misc.getKind(i);
 		switch(t) {
@@ -124,17 +125,21 @@ public class Cost {
 				b = chainBase;
 				break;
 			case INVALID:
+			default:
 				return 0;
 		}
 		
 		if(b == 0D)
 			return 0;
 		
-		double e = calcEnchantmentModifier(i);
-		double u = getUsedBlocks(i);
-		
-		
-		
-		return b;
+		if(eH != null) {
+			double e = calcEnchantmentModifier(i);
+			double u = getUsedBlocks(i);
+			cost = e * (b * ((double) i.getDurability() / (double) i.getType().getMaxDurability() * u));
+			p.sendMessage(e + " * (" + b + " * (" + i.getDurability() + " / " + i.getType().getMaxDurability() + " * " + u + "))");
+		}
+
+		p.sendMessage("" + cost);
+		return cost;
 	}
 }
