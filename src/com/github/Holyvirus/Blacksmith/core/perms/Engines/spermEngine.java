@@ -17,6 +17,7 @@ public class spermEngine implements Permission {
 		this.opHasPerms = opHasPerms;
 		
 		plugin.getLogger().log(Level.INFO, "Now using Bukkit SuperPerms!");
+		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 	}
 	
 	@Override
@@ -55,13 +56,11 @@ public class spermEngine implements Permission {
 
 	@Override
 	public boolean groupHasPerm(String group, String perm) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return false;
 	}
 
 	@Override
 	public boolean groupHasPerm(String group, String perm, String world) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return false;
 	}
 
@@ -76,13 +75,11 @@ public class spermEngine implements Permission {
 
 	@Override
 	public boolean inGroup(Player p, String group) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return false;
 	}
 	
 	@Override
 	public boolean inGroup(String p, String group, String world) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return false;
 	}
 
@@ -93,7 +90,6 @@ public class spermEngine implements Permission {
 
 	@Override
 	public String getGroup(String p) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return null;
 	}
 
@@ -104,7 +100,6 @@ public class spermEngine implements Permission {
 
 	@Override
 	public String getGroup(String p, String world) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return null;
 	}
 
@@ -115,7 +110,6 @@ public class spermEngine implements Permission {
 
 	@Override
 	public String[] getGroups(String p) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return null;
 	}
 
@@ -126,7 +120,6 @@ public class spermEngine implements Permission {
 
 	@Override
 	public String[] getGroups(String p, String world) {
-		plugin.getLogger().log(Level.WARNING, "Superperms does not support groups!");
 		return null;
 	}
 
