@@ -25,7 +25,8 @@ public class Eco {
 		BOSE7,
 		ICONOMY4,
 		ICONOMY5,
-		ICONOMY6
+		ICONOMY6,
+		MATERIALS
 	}
 	
 	private boolean packageExists(String...Packages) {
@@ -64,6 +65,8 @@ public class Eco {
 			return Engines.ICONOMY5;
 		}else if(engine.equalsIgnoreCase("ICONOMY6")) {
 			return Engines.ICONOMY6;
+		}else if(engine.equalsIgnoreCase("MATERIALS")) {
+			return Engines.MATERIALS;
 		}
 		
 		return null;
@@ -145,6 +148,10 @@ public class Eco {
 					//ic6
 					Engine = new ic6_Engine(this.plugin);
 				}
+				break;
+			case MATERIALS:
+				//Materials
+				Engine = new Material_Engine(this.plugin);
 				break;
 		}
 	}
