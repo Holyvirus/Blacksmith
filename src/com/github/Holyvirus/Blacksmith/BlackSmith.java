@@ -2,6 +2,7 @@ package com.github.Holyvirus.Blacksmith;
 
 import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
+import com.github.Holyvirus.Blacksmith.core.Eco.mEco;
 import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.Listeners.*;
 
@@ -21,6 +22,7 @@ public class BlackSmith extends JavaPlugin {
 	private static BlackSmith plugin;
 	private static Server Server;
 	private Eco econHandler;
+	private mEco matHandler;
 	private PermHandler permHandler;
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
@@ -59,11 +61,11 @@ public class BlackSmith extends JavaPlugin {
 				econHandler = new Eco(this, conf.getString("BlackSmith.Economy.Engine"));
 				if(conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("HYBRID")) {
 					//set up materials aswell
-					
+					matHandler = (mEco) new Eco(this, "Materials").getEngine();
 				}
 			}else{
 				//use materials instead
-				
+				matHandler = (mEco) new Eco(this, "Materials").getEngine();
 			}
 			
 			if(conf.getBoolean("BlackSmith.permissions.usePermissions")) {
@@ -113,6 +115,10 @@ public class BlackSmith extends JavaPlugin {
 	
 	public Eco getEcoHandler() {
 		return this.econHandler;
+	}
+	
+	public mEco getMatEngine() {
+		return this.matHandler;
 	}
 	
 	public PermHandler getPermHandler() {
