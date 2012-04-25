@@ -5,6 +5,7 @@ import com.github.Holyvirus.Blacksmith.BlackSmith;
 import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.perms.Permission;
 import com.github.Holyvirus.Blacksmith.core.Misc.Misc;
+import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Cost;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.*;
 
 import org.bukkit.ChatColor;
@@ -38,7 +39,7 @@ public class PlayerListener implements Listener {
 						if(pH.has(p, "blacksmith.use.value")) {
 							Material m = Misc.getType(event.getItem());
 							if(m != null) {
-								
+								p.sendMessage(ChatColor.BLUE + "It will cost you " + Cost.calcCost(p, event.getItem()) + " to repair!");
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
@@ -48,6 +49,24 @@ public class PlayerListener implements Listener {
 						break;
 					case REPAIR:
 						if(pH.has(p, "blacksmith.use.repair")) {
+							Material m = Misc.getType(event.getItem());
+							if(m != null) {
+								//String s = Cost.Take(p, event.getItem();
+								//if(null == s) {
+									//event.getItem().setDurability((short) 0);
+									//p.sendMessage(ChatColor.GREEN + "Tool repaired!");
+								//}else{
+									//p.sendMessage(ChatColor.DARK_RED + s); 
+								//}
+							}else{
+								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+							}
+						}else{
+							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
+						}
+						break;
+					case FREE:
+						if(pH.has(p, "blacksmith.use.free")) {
 							Material m = Misc.getType(event.getItem());
 							if(m != null) {
 								event.getItem().setDurability((short) 0);
