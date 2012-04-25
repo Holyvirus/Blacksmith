@@ -11,26 +11,40 @@ permissions:
             blacksmith.remove.repair: true
             blacksmith.use.value: true
             blacksmith.use.repair: true
+            blacksmith.use.free: true
+            blacksmith.use.kill: true
     blacksmith.use.*:
         description: Grants access to all BlackSmith use interactions
         childs:
             blacksmith.use.value: true
             blacksmith.use.repair: true
+            blacksmith.use.free: true
+            blacksmith.use.kill: true
     blacksmith.place.*:
         description: Grants access to all BlackSmith placement interactions
         childs:
             blacksmith.place.value: true
             blacksmith.place.repair: true
+            blacksmith.place.free: true
+            blacksmith.place.kill: true
     blacksmith.remove.*:
         description: Grants access to all BlackSmith remove interactions
         childs:
             blacksmith.remove.value: true
             blacksmith.remove.repair: true
+            blacksmith.remove.free: true
+            blacksmith.remove.kill: true
     blacksmith.use.value:
         description: Grants ability to use Value signs
         default: true
     blacksmith.use.repair:
         description: Grants ability to use Repair signs
+        default: true
+    blacksmith.use.free:
+        description: Grants ability to use Free signs
+        default: true
+    blacksmith.use.kill:
+        description: Grants ability to use Kill signs
         default: true
     blacksmith.place.value:
         description: Grants ability to place Value signs
@@ -38,9 +52,21 @@ permissions:
     blacksmith.place.repair:
         description: Grants ability to place Repair signs
         default: op
+    blacksmith.place.free:
+        description: Grants ability to place Free signs
+        default: true
+    blacksmith.place.kill:
+        description: Grants ability to place Kill signs
+        default: true
     blacksmith.remove.value:
         description: Grants ability to remove Value signs
         default: op
     blacksmith.remove.repair:
         description: Grants ability to remove Repair signs
+        default: op
+    blacksmith.remove.free:
+        description: Grants ability to remove Free signs
+        default: op
+    blacksmith.remove.kill:
+        description: Grants ability to remove Kill signs
         default: op
