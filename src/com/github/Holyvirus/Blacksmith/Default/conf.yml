@@ -2,7 +2,7 @@ BlackSmith:
     global:
         version: 0.1
         name: BlackSmith
-        debug: true
+        debug: false
     permissions:
         usePermissions: true
         opHasPerms: true
