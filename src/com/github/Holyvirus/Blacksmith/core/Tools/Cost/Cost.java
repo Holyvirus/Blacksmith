@@ -6,10 +6,10 @@ import com.github.Holyvirus.Blacksmith.core.Eco.iEco;
 import com.github.Holyvirus.Blacksmith.core.Misc.Misc;
 import com.github.Holyvirus.Blacksmith.core.Misc.ToolType;
 
-import org.bukkit.entity.Player;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class Cost {
@@ -91,7 +91,59 @@ public class Cost {
 		return modifier;
 	}
 	
-	public static double calcCost(Player p, ItemStack i) {
+	public static String calcCost(ItemStack i, Boolean asString) {
+		DecimalFormat f = new DecimalFormat("#0.00");
+		
+		if(i == null)
+			return f.format(0);
+		
+		if(FC)
+			init();
+		
+		double b = 0D;
+		double cost = 0D;
+		
+		ToolType t = Misc.getKind(i);
+		switch(t) {
+			case LEATHER:
+				b = leatherBase;
+				break;
+			case WOOD:
+				b = woodBase;
+				break;
+			case STONE:
+				b = stoneBase;
+				break;
+			case IRON:
+				b = ironBase;
+				break;
+			case GOLD:
+				b = goldBase;
+				break;
+			case DIAMOND:
+				b = diamondBase;
+				break;
+			case CHAIN:
+				b = chainBase;
+				break;
+			case INVALID:
+			default:
+				return f.format(0);
+		}
+		
+		if(b == 0D)
+			return f.format(0);
+		
+		if(eH != null) {
+			double e = calcEnchantmentModifier(i);
+			double u = getUsedBlocks(i);
+			cost = e * (b * ((double) i.getDurability() / (double) i.getType().getMaxDurability() * u));
+		}
+
+		return f.format(Misc.Round(cost, 2));
+	}
+	
+	public static double calcCost(ItemStack i) {
 		if(i == null)
 			return 0;
 		
