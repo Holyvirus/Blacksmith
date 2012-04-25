@@ -201,4 +201,22 @@ public class Misc {
 		
 		return null;
 	}
+	
+	public static double Round(double r, int precision) {
+		if(precision < 1)
+			precision = 1;
+		
+		double p = (double)Math.pow(10,precision);
+		
+		return Math.round(r * p) / p;
+	}
+	
+	public static float Round(float r, int precision) {
+		if(precision < 1)
+			precision = 1;
+		
+		float p = (float)Math.pow(10,precision);
+		
+		return Math.round(r * p) / p;
+	}
 }
