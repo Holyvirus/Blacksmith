@@ -27,8 +27,9 @@ public class BlockListener implements Listener{
 	@EventHandler
 	public void signChanged(SignChangeEvent event){
 		Player player = event.getPlayer();
+		if(SignValidator.isBlackSmithSign(event)){
 		SignType st = SignValidator.getType(event);
-		switch(st) {
+			switch(st) {
 			case VALUE:
 				if(!pH.has(player, "blacksmith.place.value")){
 					event.setCancelled(true);
@@ -69,6 +70,7 @@ public class BlockListener implements Listener{
 		          player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either ''Value'' or ''Repair'' into the second line!");
 		          event.getBlock().breakNaturally();
 		          return;
+		}
 		}
 	}
 	@EventHandler
