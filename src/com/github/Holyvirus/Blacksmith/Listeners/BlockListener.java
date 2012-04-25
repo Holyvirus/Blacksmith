@@ -56,6 +56,15 @@ public class BlockListener implements Listener{
 				}
 				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Kill sign!");
 		          break;
+			case FREE:
+				if(!pH.has(player, "blacksmith.place.free")) {
+					event.setCancelled(true);
+			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Free sign!");
+			          event.getBlock().breakNaturally();
+			          return;
+				}
+				player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Free sign!");
+		          break;
 			case INVALID:
 		          player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either ''Value'' or ''Repair'' into the second line!");
 		          event.getBlock().breakNaturally();
@@ -74,7 +83,7 @@ public class BlockListener implements Listener{
 				case VALUE:
 					if(!pH.has(player, "blacksmith.remove.value")) {
 						event.setCancelled(true);
-				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Value sign!");
+				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Value sign!");
 				          localSign.update();
 				          return;
 					}
@@ -83,7 +92,7 @@ public class BlockListener implements Listener{
 				case REPAIR:
 					if(!pH.has(player, "blacksmith.remove.repair")) {
 						event.setCancelled(true);
-				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Repair sign!");
+				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Repair sign!");
 				          localSign.update();
 				          return;
 					}
@@ -92,11 +101,20 @@ public class BlockListener implements Listener{
 				case KILL:
 					if(!pH.has(player, "blacksmith.remove.kill") || (!BlackSmith.getPlugin().getConfig().getBoolean("BlackSmith.global.debug"))){
 						event.setCancelled(true);
-				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
+				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Kill sign!");
 				          localSign.update();
 				          return;
 					}
 					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Kill sign!");
+			          break;
+				case FREE:
+					if(!pH.has(player, "blacksmith.remove.free")) {
+						event.setCancelled(true);
+				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Free sign!");
+				          localSign.update();
+				          return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Free sign!");
 			          break;
 				case INVALID:
 					player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either ''Value'' or ''Repair'' into the second line!");
