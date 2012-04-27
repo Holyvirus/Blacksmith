@@ -3,6 +3,7 @@ package com.github.Holyvirus.Blacksmith;
 import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
 import com.github.Holyvirus.Blacksmith.core.Eco.mEco;
+import com.github.Holyvirus.Blacksmith.core.Items.Items;
 import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.Listeners.*;
 
@@ -24,6 +25,7 @@ public class BlackSmith extends JavaPlugin {
 	private Eco econHandler;
 	private mEco matHandler;
 	private PermHandler permHandler;
+	private Items itemHandler;
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
 	
@@ -74,6 +76,7 @@ public class BlackSmith extends JavaPlugin {
 				permHandler = new PermHandler(this, "NOPERM", true);
 			}
 			//msgHandler = new Messages(this);
+			itemHandler = new Items(this);
 
 			getServer().getPluginManager().registerEvents(new BlockListener(this), this);
 			getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
@@ -119,6 +122,10 @@ public class BlackSmith extends JavaPlugin {
 	
 	public mEco getMatEngine() {
 		return this.matHandler;
+	}
+	
+	public Items getItemHandler() {
+		return this.itemHandler;
 	}
 	
 	public PermHandler getPermHandler() {
