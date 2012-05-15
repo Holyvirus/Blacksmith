@@ -30,7 +30,7 @@ public class Material_Engine extends mEco {
 			if(type == null && tmp.getData() == null) {
 				properStack.add(tmp);
 				amount += tmp.getAmount();
-			}else if(type != null && tmp.getData() != null && type.toString().equalsIgnoreCase(tmp.getData().toString())) {
+			}else if(type != null && tmp.getData() != null && item.getDurability() == tmp.getDurability()) {
 				properStack.add(tmp);
 				amount += tmp.getAmount();
 			}
