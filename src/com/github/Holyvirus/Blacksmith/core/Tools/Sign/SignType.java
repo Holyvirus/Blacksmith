@@ -5,5 +5,6 @@ public enum SignType {
 	REPAIR,
 	FREE,
 	KILL,
+	DISMANTLE,
 	INVALID
 }

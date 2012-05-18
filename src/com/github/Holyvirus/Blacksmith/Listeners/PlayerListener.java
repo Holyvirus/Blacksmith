@@ -7,6 +7,7 @@ import com.github.Holyvirus.Blacksmith.core.perms.Permission;
 import com.github.Holyvirus.Blacksmith.core.Misc.Misc;
 import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Cost;
 import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Repair;
+import com.github.Holyvirus.Blacksmith.core.Tools.Dismantling.Dismantling;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.*;
 
 import org.bukkit.ChatColor;
@@ -30,7 +31,6 @@ public class PlayerListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
-		//iEco eH = plugin.getEcoHandler().getEngine();
 		if(event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 			if(event.getClickedBlock().getState() instanceof Sign) {
 				SignType st = SignValidator.getType((Sign) event.getClickedBlock().getState());
@@ -96,6 +96,21 @@ public class PlayerListener implements Listener {
 							if(pH.has(p, "blacksmith.use.kill")) {
 								p.sendMessage(ChatColor.DARK_RED + "Debug mode is not enabled!");
 							}
+						}
+						break;
+					case DISMANTLE:
+						if(pH.has(p, "blacksmith.use.dismantle")) {
+							Material m = Misc.getMatType(event.getItem());
+							if(m != null) {
+								Dismantling.take(p, event.getItem());
+								Dismantling.add(p, event.getItem());
+								p.updateInventory();
+								p.sendMessage(ChatColor.GREEN + "Tool repaired!");
+							}else{
+								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+							}
+						}else{
+							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
 						}
 						break;
 					default:

@@ -68,8 +68,17 @@ public class BlockListener implements Listener{
 				}
 				player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Free sign!");
 		          break;
+			case DISMANTLE:
+				if(!pH.has(player, "blacksmith.place.dismantle")) {
+					event.setCancelled(true);
+			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Dismantle sign!");
+			          event.getBlock().breakNaturally();
+			          return;
+				}
+				player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Dismantle sign!");
+		          break;
 			case INVALID:
-		          player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either ''Value'' or ''Repair'' into the second line!");
+		          player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either \"Value\", \"Repair\", \"Kill\", \"Free\" or \"Dismantle\" into the second line!");
 		          event.getBlock().breakNaturally();
 		          return;
 		}
@@ -91,7 +100,7 @@ public class BlockListener implements Listener{
 				          localSign.update();
 				          return;
 					}
-					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Value sign!");
+					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Value sign!");
 			          break;
 				case REPAIR:
 					if(!pH.has(player, "blacksmith.remove.repair")) {
@@ -100,7 +109,7 @@ public class BlockListener implements Listener{
 				          localSign.update();
 				          return;
 					}
-					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Repair sign!");
+					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Repair sign!");
 			          break;
 				case KILL:
 					if(!pH.has(player, "blacksmith.remove.kill")){
@@ -109,7 +118,7 @@ public class BlockListener implements Listener{
 				          localSign.update();
 				          return;
 					}
-					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Kill sign!");
+					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Kill sign!");
 			          break;
 				case FREE:
 					if(!pH.has(player, "blacksmith.remove.free")) {
@@ -118,7 +127,16 @@ public class BlockListener implements Listener{
 				          localSign.update();
 				          return;
 					}
-					player.sendMessage(ChatColor.GREEN + "Successfully removed BlackSmith Free sign!");
+					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Free sign!");
+			          break;
+				case DISMANTLE:
+					if(!pH.has(player, "blacksmith.remove.dismantle")) {
+						event.setCancelled(true);
+				          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Dismantle sign!");
+				          event.getBlock().breakNaturally();
+				          return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Dismantle sign!");
 			          break;
 			}
 		}
