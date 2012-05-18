@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
 						}else{
-							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
+							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
 						}
 						break;
 					case REPAIR:
@@ -62,7 +62,7 @@ public class PlayerListener implements Listener {
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
 						}else{
-							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
+							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
 						}
 						break;
 					case FREE:
@@ -75,7 +75,7 @@ public class PlayerListener implements Listener {
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
 						}else{
-							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
+							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
 						}
 						break;
 					case KILL:
@@ -90,7 +90,7 @@ public class PlayerListener implements Listener {
 									p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 								}
 							}else{
-								p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
+								p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
 							}
 						}else{
 							if(pH.has(p, "blacksmith.use.kill")) {
@@ -110,7 +110,7 @@ public class PlayerListener implements Listener {
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
 						}else{
-							p.sendMessage(ChatColor.DARK_RED + "You have no access to that!");
+							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
 						}
 						break;
 					default:
