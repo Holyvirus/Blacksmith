@@ -37,7 +37,7 @@ public class Repair {
 					return "you do not have enough money!";
 				}
 			}else{
-				return "no economy engine was found!";
+				return "the economy engine specified was not found!";
 			}
 		}
 		

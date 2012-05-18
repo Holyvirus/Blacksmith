@@ -58,7 +58,6 @@ public class BlackSmith extends JavaPlugin {
 			conf.loadConfig(configFile);
 			
 			pubName = conf.getString("BlackSmith.global.name");
-			
 			if(conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("HYBRID") || !conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("MATERIALS")) {
 				econHandler = new Eco(this, conf.getString("BlackSmith.Economy.Engine"));
 				if(conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("HYBRID")) {
@@ -69,7 +68,6 @@ public class BlackSmith extends JavaPlugin {
 				//use materials instead
 				matHandler = (mEco) new Eco(this, "Materials").getEngine();
 			}
-			
 			if(conf.getBoolean("BlackSmith.permissions.usePermissions")) {
 				permHandler = new PermHandler(this, conf.getString("BlackSmith.permissions.Engine"), conf.getBoolean("BlackSmith.permissions.opHasPerms"));
 			}else{
@@ -93,8 +91,11 @@ public class BlackSmith extends JavaPlugin {
 			}
 		}catch(Exception e) {
 			log.log(Level.SEVERE, "[" + this.name + "](" + this.bName + ") Failed to load!");
-			if(conf.getBoolean("BlackSmith.global.debug"))
+			if(conf.getBoolean("BlackSmith.global.debug")){
+				e.printStackTrace();
+			}else{
 				log.log(Level.INFO, "" + e);
+			}
 			Server.getPluginManager().disablePlugin(this);
 		}
 	}

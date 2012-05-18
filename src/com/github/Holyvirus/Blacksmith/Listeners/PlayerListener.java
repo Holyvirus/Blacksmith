@@ -38,11 +38,15 @@ public class PlayerListener implements Listener {
 				switch(st) {
 					case VALUE:
 						if(pH.has(p, "blacksmith.use.value")) {
-							Material m = Misc.getMatType(event.getItem());
-							if(m != null) {
-								p.sendMessage(ChatColor.BLUE + "It will cost you " + Cost.calcCost(event.getItem(), true) + " to repair!");
+							if(BlackSmith.getPlugin().getEcoHandler().getEngine() != null) {
+								Material m = Misc.getMatType(event.getItem());
+								if(m != null) {
+									p.sendMessage(ChatColor.BLUE + "It will cost you " + Cost.calcCost(event.getItem(), true) + " to repair!");
+								}else{
+									p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+								}
 							}else{
-								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+								p.sendMessage(ChatColor.DARK_RED + "Did not calculate cost because the economy engine specified was not found!");
 							}
 						}else{
 							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");

@@ -1,6 +1,9 @@
 package com.github.Holyvirus.Blacksmith.core.Eco;
 
+import java.util.logging.Level;
+
 import com.github.Holyvirus.Blacksmith.BlackSmith;
+import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.Engines.*;
 /**
  *
@@ -26,7 +29,8 @@ public class Eco {
 		ICONOMY4,
 		ICONOMY5,
 		ICONOMY6,
-		MATERIALS
+		MATERIALS,
+		INVALID
 	}
 	
 	private boolean packageExists(String...Packages) {
@@ -67,9 +71,9 @@ public class Eco {
 			return Engines.ICONOMY6;
 		}else if(engine.equalsIgnoreCase("MATERIALS")) {
 			return Engines.MATERIALS;
+		}else{
+			return Engines.INVALID;
 		}
-		
-		return null;
 	}
 	
 	public Eco(BlackSmith plugin, String engine) {
@@ -151,6 +155,11 @@ public class Eco {
 				break;
 			case MATERIALS:
 				//Materials
+				Engine = new Material_Engine(this.plugin);
+				break;
+			case INVALID:
+				//CAUSEIMABAWSDAWG
+				BlackSmith.log.log(Level.WARNING, "Invalid engine: \"" + config.Obtain().getString("BlackSmith.Economy.Engine") + "\" specified! Using Materials Instead!");
 				Engine = new Material_Engine(this.plugin);
 				break;
 		}
