@@ -49,7 +49,6 @@ public class Dismantling {
 				mH.deposit(p, LEATHER, 3);
 				break;
 			case LEATHER_CHESTPLATE:
-				mH.deposit(p, LEATHER, 8);
 				break;
 			case LEATHER_LEGGINGS:
 				mH.deposit(p, LEATHER, 7);

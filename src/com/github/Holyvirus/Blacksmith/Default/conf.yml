@@ -19,4 +19,6 @@ BlackSmith:
         diamondbase: 200
         chainbase: 600
         enchantmentModifier: 2
-        
+    Settings:
+        DismantleOnlyOnFull: true
+        DismantleDivider: '2'

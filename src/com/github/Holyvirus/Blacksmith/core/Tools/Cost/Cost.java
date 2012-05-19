@@ -26,7 +26,7 @@ public class Cost {
 	private static double diamondBase = 200;
 	private static double chainBase = 600;
 	
-	private static double getUsedBlocks(ItemStack i) {
+	public static double getUsedBlocks(ItemStack i) {
 		if(i == null)
 			return 1;
 		
@@ -49,9 +49,9 @@ public class Cost {
 			case HELMET:
 				return 5;
 			case LEG:
-				return 6;
-			case CHEST:
 				return 7;
+			case CHEST:
+				return 8;
 		}
 		
 		return 1;

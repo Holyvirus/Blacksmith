@@ -24,11 +24,14 @@ public class PlayerListener implements Listener {
 	private BlackSmith plugin;
 	private Permission pH;
 	
+	config conf = config.Obtain();
+	
 	public PlayerListener(BlackSmith plugin) {
 		this.plugin = plugin;
 		this.pH = plugin.getPermHandler().getEngine();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if(event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -37,11 +40,13 @@ public class PlayerListener implements Listener {
 				Player p = event.getPlayer();
 				switch(st) {
 					case VALUE:
+						String rCost = Cost.calcCost(event.getItem(), true);
+						String dCost = String.valueOf(Double.parseDouble(rCost) / conf.getInt("BlackSmith.Settings.DismantleDivider"));
 						if(pH.has(p, "blacksmith.use.value")) {
 							if(BlackSmith.getPlugin().getEcoHandler().getEngine() != null) {
 								Material m = Misc.getMatType(event.getItem());
 								if(m != null) {
-									p.sendMessage(ChatColor.BLUE + "It will cost you " + Cost.calcCost(event.getItem(), true) + " to repair!");
+									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + rCost + "\" to repair this tool and \"" + dCost + "\" to dismantle!");
 								}else{
 									p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 								}
@@ -106,10 +111,12 @@ public class PlayerListener implements Listener {
 						if(pH.has(p, "blacksmith.use.dismantle")) {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
-								Dismantling.take(p, event.getItem());
-								Dismantling.add(p, event.getItem());
-								p.updateInventory();
-								p.sendMessage(ChatColor.GREEN + "Tool repaired!");
+								String d = Dismantling.dismantle(p, event.getItem());
+								if(d == null) {
+									p.sendMessage(ChatColor.GREEN + "Tool dismantled!");
+								}else{
+									p.sendMessage(ChatColor.DARK_RED + "Failed to repair tool because " + d); 
+								}
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
