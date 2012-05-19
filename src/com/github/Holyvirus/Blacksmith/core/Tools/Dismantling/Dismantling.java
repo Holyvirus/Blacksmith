@@ -61,16 +61,16 @@ public class Dismantling {
 		p.getInventory().removeItem(I);
 	}
 	public static void add(Player p, ItemStack I, double c){
-		 int a = (int) Math.round(c  * Cost.getUsedBlocks(I));
-		 a = (a < 1) ? 1 : a;
-		 ItemStack STICK = new ItemStack(Material.STICK);
-		 ItemStack WOOD = new ItemStack(Material.WOOD);
-		 ItemStack LEATHER = new ItemStack(Material.LEATHER);
-		 ItemStack STONE = new ItemStack(Material.STONE);
-		 ItemStack IRON = new ItemStack(Material.IRON_INGOT);
-		 ItemStack GOLD = new ItemStack(Material.GOLD_INGOT);
-		 ItemStack DIAMOND = new ItemStack(Material.DIAMOND);
-		 mEco mH = BlackSmith.getPlugin().getMatEngine();
+		int a = (int) Math.round(c * Cost.getUsedBlocks(I));
+		a = (a < 1) ? 1 : a;
+		ItemStack STICK = new ItemStack(Material.STICK);
+		ItemStack WOOD = new ItemStack(Material.WOOD);
+		ItemStack LEATHER = new ItemStack(Material.LEATHER);
+		ItemStack STONE = new ItemStack(Material.STONE);
+		ItemStack IRON = new ItemStack(Material.IRON_INGOT);
+		ItemStack GOLD = new ItemStack(Material.GOLD_INGOT);
+		ItemStack DIAMOND = new ItemStack(Material.DIAMOND);
+		mEco mH = BlackSmith.getPlugin().getMatEngine();
 		switch(I.getType()) {
 			case WOOD_PICKAXE:
 				mH.deposit(p, WOOD, a);
