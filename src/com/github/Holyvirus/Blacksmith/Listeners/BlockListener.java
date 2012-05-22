@@ -30,71 +30,71 @@ public class BlockListener implements Listener{
 	public void signChanged(SignChangeEvent event){
 		Player player = event.getPlayer();
 		if(SignValidator.isBlackSmithSign(event)){
-		SignType st = SignValidator.getType(event);
+			SignType st = SignValidator.getType(event);
 			switch(st) {
-			case VALUE:
-				if(!pH.has(player, "blacksmith.place.value")){
-					event.setCancelled(true);
-					player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Value sign!");
-					event.getBlock().breakNaturally();
-					return;
-				}
-				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Value sign!");
-				break;
-			case REPAIR:
-				if(!pH.has(player, "blacksmith.place.repair")){
-					event.setCancelled(true);
-					player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Repair sign!");
-					event.getBlock().breakNaturally();
-					return;
-				}
-				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Repair sign!");
-				break;
-			case KILL:
-				if(!pH.has(player, "blacksmith.place.kill")){
-					player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
-					event.setCancelled(true);
-					event.getBlock().breakNaturally();
-					return;
-				}else if(!conf.getBoolean("BlackSmith.global.debug")){
-						player.sendMessage(ChatColor.DARK_RED + "Debug mode is not enabled!");
+				case VALUE:
+					if(!pH.has(player, "blacksmith.place.value")){
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Value sign!");
+						event.getBlock().breakNaturally();
+						return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Value sign!");
+					break;
+				case REPAIR:
+					if(!pH.has(player, "blacksmith.place.repair")){
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Repair sign!");
+						event.getBlock().breakNaturally();
+						return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Repair sign!");
+					break;
+				case KILL:
+					if(!pH.has(player, "blacksmith.place.kill")){
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Kill sign!");
 						event.setCancelled(true);
 						event.getBlock().breakNaturally();
 						return;
-				}
-				player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Kill sign!");
-				break;
-			case FREE:
-				if(!pH.has(player, "blacksmith.place.free")) {
-					event.setCancelled(true);
-					player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Free sign!");
+					}else if(!conf.getBoolean("BlackSmith.global.debug")){
+							player.sendMessage(ChatColor.DARK_RED + "Debug mode is not enabled!");
+							event.setCancelled(true);
+							event.getBlock().breakNaturally();
+							return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully placed a BlackSmith Kill sign!");
+					break;
+				case FREE:
+					if(!pH.has(player, "blacksmith.place.free")) {
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Free sign!");
+						event.getBlock().breakNaturally();
+						return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Free sign!");
+					break;
+				case DISMANTLE:
+					if(!pH.has(player, "blacksmith.place.dismantle")) {
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Dismantle sign!");
+						event.getBlock().breakNaturally();
+						return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Dismantle sign!");
+					break;
+				case ENCHANT:
+					if (!this.pH.has(player, "blacksmith.place.enchant")) {
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Enchant sign!");
+						event.getBlock().breakNaturally();
+						return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Enchant sign!");
+				case INVALID:
+					player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either \"Value\", \"Repair\", \"Kill\", \"Free\" or \"Dismantle\" into the second line!");
 					event.getBlock().breakNaturally();
 					return;
-				}
-				player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Free sign!");
-				break;
-			case DISMANTLE:
-				if(!pH.has(player, "blacksmith.place.dismantle")) {
-					event.setCancelled(true);
-					player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Dismantle sign!");
-					event.getBlock().breakNaturally();
-					return;
-				}
-				player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Dismantle sign!");
-				break;
-			case ENCHANT:
-		        if (!this.pH.has(player, "blacksmith.place.enchant")) {
-		            event.setCancelled(true);
-		            player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Enchant sign!");
-		            event.getBlock().breakNaturally();
-		            return;
-		          }
-		          player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Enchant sign!");
-			case INVALID:
-				player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either \"Value\", \"Repair\", \"Kill\", \"Free\" or \"Dismantle\" into the second line!");
-				event.getBlock().breakNaturally();
-				return;
-		}
+			}
 		}
 	}
 	@EventHandler
@@ -152,13 +152,14 @@ public class BlockListener implements Listener{
 					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Dismantle sign!");
 					break;
 				case ENCHANT:
-			        if (!this.pH.has(player, "blacksmith.remove.enchant")) {
-			          event.setCancelled(true);
-			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Enchant sign!");
-			          event.getBlock().breakNaturally();
-			          return;
-			        }
-			        player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Enchant sign!");
+					if (!this.pH.has(player, "blacksmith.remove.enchant")) {
+						event.setCancelled(true);
+						player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Enchant sign!");
+						event.getBlock().breakNaturally();
+						return;
+					}
+					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Enchant sign!");
+					break;
 			}
 		}
 	}
