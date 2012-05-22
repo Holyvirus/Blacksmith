@@ -20,6 +20,8 @@ public class SignValidator {
 			return SignType.KILL;
 		}else if(s.equalsIgnoreCase("DISMANTLE")) {
 			return SignType.DISMANTLE;
+		}else if(s.equalsIgnoreCase("ENCHANT")) {
+			return SignType.ENCHANT;
 		}
 		
 		return SignType.INVALID;

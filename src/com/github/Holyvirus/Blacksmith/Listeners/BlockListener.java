@@ -82,6 +82,14 @@ public class BlockListener implements Listener{
 				}
 				player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Dismantle sign!");
 				break;
+			case ENCHANT:
+		        if (!this.pH.has(player, "blacksmith.place.enchant")) {
+		            event.setCancelled(true);
+		            player.sendMessage(ChatColor.DARK_RED + "You are not allowed to place a Blacksmith Enchant sign!");
+		            event.getBlock().breakNaturally();
+		            return;
+		          }
+		          player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Enchant sign!");
 			case INVALID:
 				player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either \"Value\", \"Repair\", \"Kill\", \"Free\" or \"Dismantle\" into the second line!");
 				event.getBlock().breakNaturally();
@@ -143,6 +151,14 @@ public class BlockListener implements Listener{
 					}
 					player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Dismantle sign!");
 					break;
+				case ENCHANT:
+			        if (!this.pH.has(player, "blacksmith.remove.enchant")) {
+			          event.setCancelled(true);
+			          player.sendMessage(ChatColor.DARK_RED + "You are not allowed to remove a Blacksmith Enchant sign!");
+			          event.getBlock().breakNaturally();
+			          return;
+			        }
+			        player.sendMessage(ChatColor.GREEN + "Successfully removed the BlackSmith Enchant sign!");
 			}
 		}
 	}
