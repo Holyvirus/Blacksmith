@@ -90,6 +90,7 @@ public class BlockListener implements Listener{
 						return;
 					}
 					player.sendMessage(ChatColor.GREEN + "Successfully placed BlackSmith Enchant sign!");
+					break;
 				case INVALID:
 					player.sendMessage(ChatColor.RED + "You have placed an invalid sign. Type either \"Value\", \"Repair\", \"Kill\", \"Free\" or \"Dismantle\" into the second line!");
 					event.getBlock().breakNaturally();
