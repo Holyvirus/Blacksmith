@@ -22,9 +22,9 @@ public class SignValidator {
 			return SignType.DISMANTLE;
 		}else if(s.equalsIgnoreCase("ENCHANT")) {
 			return SignType.ENCHANT;
+		}else{
+			return SignType.INVALID;
 		}
-		
-		return SignType.INVALID;
 	}
 	
 	public static boolean isBlackSmithSign(Sign s) {
@@ -40,7 +40,6 @@ public class SignValidator {
 			return getType(s.getLine(1));
 		
 		return SignType.INVALID;
-			
 	}
 	
 	public static SignType getType(SignChangeEvent s) {

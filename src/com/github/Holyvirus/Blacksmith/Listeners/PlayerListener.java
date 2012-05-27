@@ -31,7 +31,6 @@ public class PlayerListener implements Listener {
 		this.pH = plugin.getPermHandler().getEngine();
 	}
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		if(event.getAction() == Action.LEFT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -41,7 +40,7 @@ public class PlayerListener implements Listener {
 				switch(st) {
 					case VALUE:
 						String rCost = Cost.calcCost(event.getItem(), true);
-						String dCost = String.valueOf(Double.parseDouble(rCost) / conf.getInt("BlackSmith.Settings.DismantleDivider"));
+						String dCost = String.valueOf(Misc.Round(Double.parseDouble(rCost) / conf.getInt("BlackSmith.Settings.DismantleDivider"), 2));
 						if(pH.has(p, "blacksmith.use.value")) {
 							if(BlackSmith.getPlugin().getEcoHandler().getEngine() != null) {
 								Material m = Misc.getMatType(event.getItem());
@@ -117,6 +116,19 @@ public class PlayerListener implements Listener {
 								}else{
 									p.sendMessage(ChatColor.DARK_RED + "Failed to repair tool because " + d); 
 								}
+							}else{
+								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+							}
+						}else{
+							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
+						}
+						break;
+					case ENCHANT:
+						if(pH.has(p, "blacksmith.use.enchant")) {
+							Material m = Misc.getMatType(event.getItem());
+							if(m != null) {
+								p.sendMessage(ChatColor.GREEN + "Welcome to the BlackSmith enchanting service! Please type \"help\" for more info, or type the enchant and the level that you want on your " + event.getItem(). + " !");
+								ChatListener.add(p, 1);
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
