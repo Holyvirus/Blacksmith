@@ -10,6 +10,8 @@ import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Repair;
 import com.github.Holyvirus.Blacksmith.core.Tools.Dismantling.Dismantling;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.*;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
@@ -39,18 +41,16 @@ public class PlayerListener implements Listener {
 				Player p = event.getPlayer();
 				switch(st) {
 					case VALUE:
-						String rCost = Cost.calcCost(event.getItem(), true);
-						String dCost = String.valueOf(Misc.Round(Double.parseDouble(rCost) / conf.getInt("BlackSmith.Settings.DismantleDivider"), 2));
+						List<String> rCost = Cost.calcCost(event.getItem(), true);
+						String dCost = String.valueOf(Misc.Round(Cost.calcCost(event.getItem()) / conf.getInt("BlackSmith.Settings.DismantleDivider"), 2));
 						if(pH.has(p, "blacksmith.use.value")) {
-							if(BlackSmith.getPlugin().getEcoHandler().getEngine() != null) {
-								Material m = Misc.getMatType(event.getItem());
-								if(m != null) {
-									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + rCost + "\" to repair this tool and \"" + dCost + "\" to dismantle!");
-								}else{
-									p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+							Material m = Misc.getMatType(event.getItem());
+							if(m != null) {
+								if(rCost.size() == 1) {
+									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + rCost.get(0) + "\" to repair this tool and \"" + dCost + "\" to dismantle!");
 								}
 							}else{
-								p.sendMessage(ChatColor.DARK_RED + "Did not calculate cost because the economy engine specified was not found!");
+								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
 						}else{
 							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
