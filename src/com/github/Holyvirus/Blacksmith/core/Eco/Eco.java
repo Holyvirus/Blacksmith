@@ -159,7 +159,7 @@ public class Eco {
 				break;
 			case INVALID:
 				//CAUSEIMABAWSDAWG
-				BlackSmith.log.log(Level.WARNING, "Invalid engine: \"" + config.Obtain().getString("BlackSmith.Economy.Engine") + "\" specified! Using Materials Instead!");
+				BlackSmith.log.log(Level.WARNING, "Invalid engine: \"" + engine + "\" specified! Using Materials Instead!");
 				Engine = new Material_Engine(this.plugin);
 				break;
 		}
