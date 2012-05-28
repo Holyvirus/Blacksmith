@@ -105,51 +105,58 @@ public class Cost {
 		if(FC)
 			init();
 		
-		double b = 0D;
-		double cost = 0D;
-		
-		ToolType t = Misc.getKind(i);
-		switch(t) {
-			case LEATHER:
-				b = leatherBase;
-				break;
-			case WOOD:
-				b = woodBase;
-				break;
-			case STONE:
-				b = stoneBase;
-				break;
-			case IRON:
-				b = ironBase;
-				break;
-			case GOLD:
-				b = goldBase;
-				break;
-			case DIAMOND:
-				b = diamondBase;
-				break;
-			case CHAIN:
-				b = chainBase;
-				break;
-			case INVALID:
-			default:
+		if(eH != null) {
+			double b = 0D;
+			double cost = 0D;
+			
+			ToolType t = Misc.getKind(i);
+			switch(t) {
+				case LEATHER:
+					b = leatherBase;
+					break;
+				case WOOD:
+					b = woodBase;
+					break;
+				case STONE:
+					b = stoneBase;
+					break;
+				case IRON:
+					b = ironBase;
+					break;
+				case GOLD:
+					b = goldBase;
+					break;
+				case DIAMOND:
+					b = diamondBase;
+					break;
+				case CHAIN:
+					b = chainBase;
+					break;
+				case INVALID:
+				default:
+					b = 0D;
+			}
+			
+			if(b == 0D) {
 				s.add(f.format(0));
 				return s;
-		}
-		
-		if(b == 0D) {
-			s.add(f.format(0));
-			return s;
-		}
-		
-		if(eH != null) {
+			}
+			
 			double e = calcEnchantmentModifier(i);
 			double u = getUsedBlocks(i);
 			cost = e * (b * ((double) i.getDurability() / (double) i.getType().getMaxDurability() * u));
+	
+			s.add(f.format(Misc.Round(cost, 2)));
 		}
-
-
-		s.add(f.format(Misc.Round(cost, 2)));
+		
+		if(MaterialEn.useMatEn()) {
+			s.addAll(MaterialEn.calcCost(i, true));
+		}
+		
+		if(s.size() == 0) {
+			s.add("This is odd, we can neither use an economy engine nor the materials engine!");
+		}
+		
 		return s;
 	}
 	
