@@ -68,6 +68,7 @@ public class BlackSmith extends JavaPlugin {
 				//use materials instead
 				matHandler = (mEco) new Eco(this, "Materials").getEngine();
 			}
+			
 			if(conf.getBoolean("BlackSmith.permissions.usePermissions")) {
 				permHandler = new PermHandler(this, conf.getString("BlackSmith.permissions.Engine"), conf.getBoolean("BlackSmith.permissions.opHasPerms"));
 			}else{
