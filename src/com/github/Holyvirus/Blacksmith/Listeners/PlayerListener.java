@@ -48,6 +48,12 @@ public class PlayerListener implements Listener {
 							if(m != null) {
 								if(rCost.size() == 1) {
 									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + rCost.get(0) + "\" to repair this tool and \"" + dCost + "\" to dismantle!");
+								}else{
+									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + dCost + "\" to dismantle and");
+									for(String s : rCost) {
+										p.sendMessage(ChatColor.BLUE + s);
+									}
+									p.sendMessage(ChatColor.BLUE + "to repair the given tool");
 								}
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
