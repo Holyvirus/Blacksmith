@@ -10,6 +10,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Cost {
@@ -91,11 +93,14 @@ public class Cost {
 		return modifier;
 	}
 	
-	public static String calcCost(ItemStack i, Boolean asString) {
+	public static List<String> calcCost(ItemStack i, Boolean asString) {
 		DecimalFormat f = new DecimalFormat("#0.00");
+		List<String> s = new ArrayList<String>();
 		
-		if(i == null)
-			return f.format(0);
+		if(i == null) {
+			s.add(f.format(0));
+			return s;
+		}
 		
 		if(FC)
 			init();
@@ -128,11 +133,14 @@ public class Cost {
 				break;
 			case INVALID:
 			default:
-				return f.format(0);
+				s.add(f.format(0));
+				return s;
 		}
 		
-		if(b == 0D)
-			return f.format(0);
+		if(b == 0D) {
+			s.add(f.format(0));
+			return s;
+		}
 		
 		if(eH != null) {
 			double e = calcEnchantmentModifier(i);
@@ -140,7 +148,9 @@ public class Cost {
 			cost = e * (b * ((double) i.getDurability() / (double) i.getType().getMaxDurability() * u));
 		}
 
-		return f.format(Misc.Round(cost, 2));
+
+		s.add(f.format(Misc.Round(cost, 2)));
+		return s;
 	}
 	
 	public static double calcCost(ItemStack i) {
