@@ -8,6 +8,8 @@ import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.Listeners.*;
 
 import org.bukkit.Server;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -79,6 +81,7 @@ public class BlackSmith extends JavaPlugin {
 
 			getServer().getPluginManager().registerEvents(new BlockListener(this), this);
 			getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+			getServer().getPluginManager().registerEvents(new ChatListener(), this);
 			
 			if(!permHandler.isEnabled()) {
 				log.log(Level.WARNING, "[" + this.name + "] Could not load permissions engine yet!");

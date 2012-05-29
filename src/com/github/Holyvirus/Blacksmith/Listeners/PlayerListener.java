@@ -133,8 +133,8 @@ public class PlayerListener implements Listener {
 						if(pH.has(p, "blacksmith.use.enchant")) {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
-								p.sendMessage(ChatColor.GREEN + "Welcome to the BlackSmith enchanting service! Please type \"help\" for more info, or type the enchant and the level that you want on your " + event.getItem() + " !");
 								ChatListener.add(p, 1);
+								p.sendMessage(ChatColor.GREEN + "Welcome to the BlackSmith enchanting service! Please type \"help\" for more info, or type the enchant and the level that you want on your " + event.getItem().getType().toString().toLowerCase().replace("_", " ") + " !");
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 							}
