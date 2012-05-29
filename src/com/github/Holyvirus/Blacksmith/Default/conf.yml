@@ -22,3 +22,25 @@ BlackSmith:
     Settings:
         DismantleOnlyOnFull: true
         DismantleDivider: '2'
+Ê ÊEnchantmentPrices:
+ Ê Ê Ê ÊProtection: 20
+ Ê Ê Ê ÊFire Protection: 40
+ Ê Ê Ê ÊFeather Fall: 40
+ Ê Ê Ê ÊBlast Protection: 100
+ Ê Ê Ê ÊProjectile Protection: 40
+ Ê Ê Ê ÊRespiration: 100
+ Ê Ê Ê ÊAqua Affinity: 100
+ Ê Ê Ê ÊSharpness: 20
+ Ê Ê Ê ÊSmite: 40
+ Ê Ê Ê ÊBane of Arthropods: 40
+ Ê Ê Ê ÊKnockback: 40
+ Ê Ê Ê ÊFire Aspect: 100
+ Ê Ê Ê ÊLooting: 100
+ Ê Ê Ê ÊEfficiency: 20
+ Ê Ê Ê ÊSilk Touch: 200
+ Ê Ê Ê ÊUnbreaking: 40
+ Ê Ê Ê ÊFortune: 100
+ Ê Ê Ê ÊPower: 20
+ Ê Ê Ê ÊPunch: 100
+ Ê Ê Ê ÊFlame: 100
+ Ê Ê Ê ÊInfinity: 200

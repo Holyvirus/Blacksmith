@@ -8,6 +8,7 @@ import com.github.Holyvirus.Blacksmith.core.Misc.Misc;
 import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Cost;
 import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Repair;
 import com.github.Holyvirus.Blacksmith.core.Tools.Dismantling.Dismantling;
+import com.github.Holyvirus.Blacksmith.core.Tools.Enchanter.Enchanter;
 import com.github.Holyvirus.Blacksmith.core.Tools.Sign.*;
 
 import java.util.List;
@@ -134,6 +135,7 @@ public class PlayerListener implements Listener {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
 								ChatListener.add(p, 1);
+								Enchanter.add(p, event.getItem());
 								p.sendMessage(ChatColor.GREEN + "Welcome to the BlackSmith enchanting service! Please type \"help\" for more info, or type the enchant and the level that you want on your " + event.getItem().getType().toString().toLowerCase().replace("_", " ") + " !");
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");

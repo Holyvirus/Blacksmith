@@ -35,12 +35,16 @@ public class ChatListener implements Listener {
 					String[] s = m.split(" ");
 					String e = s[0];
 					int lvl = Integer.parseInt(s[1]);
-					Enchanter.enchant(p, e, lvl);
-				}else if (m.equalsIgnoreCase("exit")){
+					if(Enchanter.validateMsg1(e)){
+						Enchanter.enchant(p, e, lvl);
+					}else{
+						p.sendMessage("You have entered an invalid enchant, you may type \"/bs enchants\" for a list of enchantments!");
+					}
+				}else if (m.equalsIgnoreCase("^exit$")){
 					msgCount.remove(p.getName());
 					p.sendMessage(ChatColor.RED + "Thank you for using the BlackSmith enchanter!");
 				}else{
-					p.sendMessage(ChatColor.RED + "Please type: \"enchant\" \"Level\". You may also type \"help (pg)\" for a list of enchants or \"exit\" to leave ");
+					p.sendMessage(ChatColor.RED + "Please type: \"enchant\" \"Level\". You may also type \"/bs enchants\" for a list of enchants or \"exit\" to leave ");
 				}
 			}
 			event.setCancelled(true);
