@@ -28,24 +28,24 @@ public class Materials {
 		
 		for(String tool : tools) {
 			HashMap<ItemID, Integer> tmp = new HashMap<ItemID, Integer>();
-			Set<String> mats = yaml.getConfigurationSection("Material.tool").getKeys(false);
+			Set<String> mats = yaml.getConfigurationSection("Material." + tool).getKeys(false);
 			for(String mat : mats) {
 				ItemID iID = iH.getItemIDByName(mat);
 				if(iID == null) {
-					BlackSmith.log.log(Level.INFO, "[" + plugin.getName() + "] Invalid key detected in MaterialCost.yml (Materials." + tool + "." + tool + ")");
+					BlackSmith.log.log(Level.INFO, "[" + plugin.getName() + "] Invalid key detected in MaterialCost.yml (Material." + tool + ")");
 					continue;
 				}
 				
-				int amount = yaml.getInt("Materials." + tool + "." + mat);
+				int amount = yaml.getInt("Material." + tool + "." + mat);
 				if(amount <= 0) {
-					BlackSmith.log.log(Level.INFO, "[" + plugin.getName() + "] Invalid amount detected for MaterialCost.yml (Materials." + tool + "." + tool + ")");
+					BlackSmith.log.log(Level.INFO, "[" + plugin.getName() + "] Invalid amount detected for MaterialCost.yml (Material." + tool + "." + mat + ")");
 					return;
 				}
 				
 				tmp.put(iID, amount);
 			}
 			
-			list.put(tool, tmp);
+			list.put(tool.toLowerCase(), tmp);
 		}
 	}
 	
@@ -69,27 +69,27 @@ public class Materials {
 	}
 	
 	public List<String> getCostString(String name) {
-		if(!list.containsKey(name))
+		if(!list.containsKey(name.toLowerCase()))
 			return null;
 		
 		List<String> sL = new ArrayList<String>();
-		HashMap<ItemID, Integer> tmp = list.get(name);
+		HashMap<ItemID, Integer> tmp = list.get(name.toLowerCase());
 		for(Map.Entry<ItemID, Integer> entry : tmp.entrySet()) {
 			ItemID iID = entry.getKey();
 			StringBuilder s = new StringBuilder();
-			s.append("It will cost you ");
 			s.append(entry.getValue());
 			s.append(" of " + iH.getItemNameByID(iID.getId(), iID.getType()));
+			sL.add(s.toString());
 		}
 		
 		return sL;
 	}
 	
 	public HashMap<ItemID, Integer> getCostMap(String name) {
-		if(!list.containsKey(name))
+		if(!list.containsKey(name.toLowerCase()))
 			return null;
 		
-		return list.get(name);
+		return list.get(name.toLowerCase());
 	}
 	
 	public static Materials getInstance() {
