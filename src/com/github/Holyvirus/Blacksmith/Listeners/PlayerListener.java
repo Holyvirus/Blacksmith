@@ -43,18 +43,19 @@ public class PlayerListener implements Listener {
 				switch(st) {
 					case VALUE:
 						List<String> rCost = Cost.calcCost(event.getItem(), true);
-						String dCost = String.valueOf(Misc.Round(Cost.calcCost(event.getItem()) / conf.getInt("BlackSmith.Settings.DismantleDivider"), 2));
+						int dM = (conf.getInt("BlackSmith.Settings.DismantleDivider") > 0) ? conf.getInt("BlackSmith.Settings.DismantleDivider") : 1;
+						String dCost = String.valueOf(Misc.Round(Cost.calcCost(event.getItem()) / dM, 2));
 						if(pH.has(p, "blacksmith.use.value")) {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
 								if(rCost.size() == 1) {
-									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + rCost.get(0) + "\" to repair this tool and \"" + dCost + "\" to dismantle!");
+									p.sendMessage(ChatColor.BLUE + "It will cost you " + rCost.get(0) + " to repair this tool and " + dCost + " to dismantle!");
 								}else{
-									p.sendMessage(ChatColor.BLUE + "It will cost you \"" + dCost + "\" to dismantle and");
+									p.sendMessage(ChatColor.BLUE + "To repair the given tool it will cost you");
 									for(String s : rCost) {
-										p.sendMessage(ChatColor.BLUE + s);
+										p.sendMessage(ChatColor.BLUE + " - " + s);
 									}
-									p.sendMessage(ChatColor.BLUE + "to repair the given tool");
+									p.sendMessage(ChatColor.BLUE + "or " + dCost + " to dismantle!");
 								}
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
