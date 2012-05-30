@@ -21,7 +21,7 @@ BlackSmith:
         enchantmentModifier: 2
     Settings:
         DismantleOnlyOnFull: true
-        DismantleDivider: '2'
+        DismantleDivider: 2
     EnchantmentPrices:
         Protection: 20
         Fire Protection: 40
