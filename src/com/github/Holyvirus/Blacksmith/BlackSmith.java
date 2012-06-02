@@ -31,6 +31,7 @@ public class BlackSmith extends JavaPlugin {
 	private Items itemHandler;
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
+	private Boolean useEco = true;
 	
 	private void setPlugin() {
 		plugin = this;
@@ -71,6 +72,7 @@ public class BlackSmith extends JavaPlugin {
 				}
 			}else{
 				//use materials instead
+				useEco = false;
 				Materials.getInstance();
 				matHandler = (mEco) new Eco(this, "Materials").getEngine();
 			}
@@ -90,12 +92,19 @@ public class BlackSmith extends JavaPlugin {
 				log.log(Level.WARNING, "[" + this.name + "] Could not load permissions engine yet!");
 				log.log(Level.WARNING, "[" + this.name + "] Errors might occur if you do not see '[" + name + "]Successfully hooked into (whichever)!' after this message!");
 			}
-			if(econHandler.isLoaded()) {
-				log.log(Level.INFO, "[" + this.name + "](" + this.bName + ") Was successfully enabled!");
+			
+			if(useEco) {
+				if(econHandler.isLoaded()) {
+					log.log(Level.INFO, "[" + this.name + "](" + this.bName + ") Was successfully enabled!");
+				}else{
+					log.log(Level.WARNING, "[" + this.name + "] Could not load economy engine yet!");
+					log.log(Level.WARNING, "[" + this.name + "] Errors might occur if you do not see '[" + name + "]Successfully hooked into (whichever) Engine!' after this message!");
+				}
 			}else{
-				log.log(Level.WARNING, "[" + this.name + "] Could not load economy engine yet!");
-				log.log(Level.WARNING, "[" + this.name + "] Errors might occur if you do not see '[" + name + "]Successfully hooked into (whichever) Engine!' after this message!");
+				log.log(Level.INFO, "[" + this.name + "] now using materials");
+				log.log(Level.INFO, "[" + this.name + "](" + this.bName + ") Was successfully enabled!");
 			}
+			
 		}catch(Exception e) {
 			log.log(Level.SEVERE, "[" + this.name + "](" + this.bName + ") Failed to load!");
 			if(conf.getBoolean("BlackSmith.global.debug")){

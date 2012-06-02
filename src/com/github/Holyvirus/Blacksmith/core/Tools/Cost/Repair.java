@@ -50,10 +50,19 @@ public class Repair {
 						eH.withdraw(p, cost);
 						return null;
 					}
+					
 					return "Materials lacking!";
 				}else{
 					return "you do not have enough money!";
 				}
+			}else if(MaterialEn.useMatEn()) {
+				if(MaterialEn.useMatEn() && hM) {
+					i.setDurability((short) 0);
+					MaterialEn.take(p, i);
+					return null;
+				}
+				
+				return "Materials lacking!";
 			}else{
 				return "the economy engine specified was not found!";
 			}
