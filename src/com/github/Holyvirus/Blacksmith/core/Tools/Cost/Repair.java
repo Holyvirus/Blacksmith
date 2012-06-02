@@ -26,13 +26,31 @@ public class Repair {
 			init();
 		
 		if(i != null) {
+			Boolean hM = false;
+			
+			if(MaterialEn.useMatEn()) {
+				if(MaterialEn.hasEnough(p, i)) {
+					hM = true;
+				}else{
+					return "you do not have the required materials!";	
+				}
+			}
+			
 			if(eH != null) {
 				double cost = Cost.calcCost(i);
 				double b = eH.getBalance(p);
 				if(b > cost) {
-					eH.withdraw(p, cost);
-					i.setDurability((short) 0);
-					return null;
+					if(MaterialEn.useMatEn() && hM) {
+						i.setDurability((short) 0);
+						MaterialEn.take(p, i);
+						eH.withdraw(p, cost);
+						return null;
+					}else if(!MaterialEn.useMatEn()){
+						i.setDurability((short) 0);
+						eH.withdraw(p, cost);
+						return null;
+					}
+					return "Materials lacking!";
 				}else{
 					return "you do not have enough money!";
 				}
