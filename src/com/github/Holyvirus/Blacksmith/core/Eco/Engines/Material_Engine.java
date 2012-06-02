@@ -88,7 +88,7 @@ public class Material_Engine extends mEco {
 	@Override
 	public boolean withdraw(Player player, ItemStack i, int amount) {
 		int has = this.hasAmount(player.getInventory(), i);
-		if(has > amount) {
+		if(has >= amount) {
 			this.removeItem(player.getInventory(), i, amount);
 		}
 		return false;
