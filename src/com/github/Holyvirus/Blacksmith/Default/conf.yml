@@ -23,24 +23,24 @@ BlackSmith:
         DismantleOnlyOnFull: true
         DismantleDivider: 2
     EnchantmentPrices:
-        Protection: 20
-        Fire Protection: 40
-        Feather Fall: 40
-        Blast Protection: 100
-        Projectile Protection: 40
-        Respiration: 100
-        Aqua Affinity: 100
-        Sharpness: 20
-        Smite: 40
-        Bane of Arthropods: 40
-        Knockback: 40
-        Fire Aspect: 100
-        Looting: 100
-        Efficiency: 20
-        Silk Touch: 200
-        Unbreaking: 40
-        Fortune: 100
-        Power: 20
-        Punch: 100
-        Flame: 100
-        Infinity: 200
+        protection: 20
+        fire_protection: 40
+        feather_fall: 40
+        blast_protection: 100
+        projectile_protection: 40
+        respiration: 100
+        aqua_affinity: 100
+        sharpness: 20
+        smite: 40
+        bane_of_arthropods: 40
+        knockback: 40
+        fire_aspect: 100
+        looting: 100
+        efficiency: 20
+        silk touch: 200
+        unbreaking: 40
+        fortune: 100
+        power: 20
+        punch: 100
+        flame: 100
+        infinity: 200

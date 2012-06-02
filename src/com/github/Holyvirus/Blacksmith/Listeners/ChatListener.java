@@ -20,6 +20,10 @@ public class ChatListener implements Listener {
 		msgCount.put(p.getName(), i);
 	}
 	
+	public static void remove(Player p){
+		msgCount.remove(p.getName());
+	}
+	
 	@EventHandler
 	public void onChat(PlayerChatEvent event){
 		Player p = event.getPlayer();
@@ -31,7 +35,7 @@ public class ChatListener implements Listener {
 			Integer c = msgCount.get(p.getName());
 			p.sendMessage("c: " + c);
 			if(c == 1){
-				if(m.matches("^[a-zA-Z]+ [0-9]+$")){
+				if(m.matches("^[a-zA-Z_]+ [0-9]+$")){
 					String[] s = m.split(" ");
 					String e = s[0];
 					int lvl = Integer.parseInt(s[1]);
@@ -45,6 +49,12 @@ public class ChatListener implements Listener {
 					p.sendMessage(ChatColor.RED + "Thank you for using the BlackSmith enchanter!");
 				}else{
 					p.sendMessage(ChatColor.RED + "Please type: \"enchant\" \"Level\". You may also type \"/bs enchants\" for a list of enchants or \"exit\" to leave ");
+				}
+			}else if(c == 2){
+				if(m.matches("yes")){
+					
+				}else if(m.matches("no")){
+					
 				}
 			}
 			event.setCancelled(true);
