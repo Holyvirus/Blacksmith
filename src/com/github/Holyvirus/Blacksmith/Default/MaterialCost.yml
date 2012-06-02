@@ -56,29 +56,31 @@ Material:
     Gold_Boots:
         Gold_Ingot: 2
     Diamond_Pickaxe:
-        Diamond_Ingot: 1
+        Diamond: 1
     Diamond_Shovel:
         Stick: 1
     Diamond_Axe:
-        Diamond_Ingot: 1
+        Diamond: 1
+    Diamond_Hoe:
+        Diamond: 1
     Diamond_Sword:
-        Diamond_Ingot: 1
+        Diamond: 1
     Diamond_Helmet:
-        Diamond_Ingot: 2
+        Diamond: 2
     Diamond_Chestplate:
-        Diamond_Ingot: 4
+        Diamond: 4
     Diamond_Leggings:
-        Diamond_Ingot: 2
+        Diamond: 2
     Diamond_Boots:
-        Diamond_Ingot: 2
+        Diamond: 2
     Chainmail_Helmet:
-        Diamond_Ingot: 4
+        Diamond: 4
     Chainmail_Chestplate:
-        Diamond_Ingot: 8
+        Diamond: 8
     Chainmail_Leggings:
-        Diamond_Ingot: 4
+        Diamond: 4
     Chainmail_Boots:
-        Diamond_Ingot: 4
+        Diamond: 4
     Bow:
         Wooden_Planks: 4
     Flint:
