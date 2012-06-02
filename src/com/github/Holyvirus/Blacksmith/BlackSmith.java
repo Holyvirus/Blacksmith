@@ -4,6 +4,7 @@ import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
 import com.github.Holyvirus.Blacksmith.core.Eco.mEco;
 import com.github.Holyvirus.Blacksmith.core.Items.Items;
+import com.github.Holyvirus.Blacksmith.core.Tools.Materials.Materials;
 import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.Listeners.*;
 
@@ -60,14 +61,17 @@ public class BlackSmith extends JavaPlugin {
 			conf.loadConfig(configFile);
 			
 			pubName = conf.getString("BlackSmith.global.name");
+			itemHandler = new Items(this);
 			if(conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("HYBRID") || !conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("MATERIALS")) {
 				econHandler = new Eco(this, conf.getString("BlackSmith.Economy.Engine"));
 				if(conf.getString("BlackSmith.Economy.type").equalsIgnoreCase("HYBRID")) {
 					//set up materials aswell
+					Materials.getInstance();
 					matHandler = (mEco) new Eco(this, "Materials").getEngine();
 				}
 			}else{
 				//use materials instead
+				Materials.getInstance();
 				matHandler = (mEco) new Eco(this, "Materials").getEngine();
 			}
 			
@@ -77,7 +81,6 @@ public class BlackSmith extends JavaPlugin {
 				permHandler = new PermHandler(this, "NOPERM", true);
 			}
 			//msgHandler = new Messages(this);
-			itemHandler = new Items(this);
 
 			getServer().getPluginManager().registerEvents(new BlockListener(this), this);
 			getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
