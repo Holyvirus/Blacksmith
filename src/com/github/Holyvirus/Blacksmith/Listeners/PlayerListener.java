@@ -49,9 +49,9 @@ public class PlayerListener implements Listener {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
 								if(rCost.size() == 1) {
-									p.sendMessage(ChatColor.BLUE + "It will cost you " + rCost.get(0) + " to repair this tool and " + dCost + " to dismantle!");
+									p.sendMessage(ChatColor.BLUE + "It will cost you " + rCost.get(0) + " to repair your " + event.getItem().getType().toString().toLowerCase().replace("_", " ") + " or " + dCost + " to dismantle!");
 								}else{
-									p.sendMessage(ChatColor.BLUE + "To repair the given tool it will cost you");
+									p.sendMessage(ChatColor.BLUE + "To repair your " + event.getItem().getType().toString().toLowerCase().replace("_", " ") + " it will cost you");
 									for(String s : rCost) {
 										p.sendMessage(ChatColor.BLUE + " - " + s);
 									}

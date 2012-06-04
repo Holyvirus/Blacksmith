@@ -1,6 +1,8 @@
 package com.github.Holyvirus.Blacksmith.core.Tools.Enchanter;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
@@ -10,12 +12,23 @@ import org.bukkit.inventory.ItemStack;
 import com.github.Holyvirus.Blacksmith.BlackSmith;
 import com.github.Holyvirus.Blacksmith.Listeners.ChatListener;
 import com.github.Holyvirus.Blacksmith.core.config;
+import com.github.Holyvirus.Blacksmith.core.Eco.iEco;
+import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Cost;
 import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.core.perms.Permission;
 
 public class Enchanter {
 
+	private static boolean FC = true;
+	private static iEco eH;
 	private static HashMap<String, ItemStack> item = new HashMap<String, ItemStack>();
+	private static HashMap<String,HashMap<Enchantment, Integer>> enchants = new HashMap<String,HashMap<Enchantment, Integer>>();
+	
+	private static void init() {	
+		FC = false;
+		if(null != BlackSmith.getPlugin().getEcoHandler())
+			eH = BlackSmith.getPlugin().getEcoHandler().getEngine();
+	}
 	
 	public static void add(Player p, ItemStack i){
 		item.put(p.getName(), i);
@@ -30,7 +43,8 @@ public class Enchanter {
 	      (m.equalsIgnoreCase("Infinity"));
 	  }
 
-	  public static void enchant(Player p, String e, int rlvl){
+	  public static void enchantValidate(Player p, String e, int rlvl){//shut up for now :P
+		  HashMap<Enchantment, Integer> fen = new HashMap<Enchantment, Integer>();
 		  Permission pH = BlackSmith.getPlugin().getPermHandler().getEngine();
 		  ItemStack i = null;
 		  int lvl = 0;
@@ -44,16 +58,14 @@ public class Enchanter {
 		    	  if (i.containsEnchantment(en)) {
 		    		  int plvl = i.getEnchantmentLevel(en);
 		    		  lvl = plvl + rlvl;
+		    	  }else{
+		    		  lvl = rlvl;
 		    	  }
+		    	  fen.put(en, lvl);
+		    	  enchants.put(p.getName(), fen);
 		    	  ChatListener.add(p, 2);
+				  p.sendMessage("lvl: " + lvl);
 		    	  p.sendMessage("The enchant will cost you: " + getEnchantCost(p, e.toLowerCase(), rlvl) + "! Should I continue? Please type \"yes\" or \"no\"!");
-		    	  try{
-		        	i.addEnchantment(en, lvl);
-		    	  }catch(Exception ex){
-		        	if(pH.has(p, "blacksmith.enchant.unsafe")){
-		        		i.addUnsafeEnchantment(en, lvl);
-		        	}
-		    	  }
 	      }else{
 	        p.sendMessage(ChatColor.RED + "You have more then one item in your slot, please try again!");
 	      }
@@ -63,18 +75,63 @@ public class Enchanter {
 	    }
 	  }
 
-	  public static String getEnchantCost(Player p, String e, int lvl){
+	  public static void enchant(Player p, String e){
+		  Permission pH = BlackSmith.getPlugin().getPermHandler().getEngine();
+		  Iterator<Enchantment> mp;
+		  Enchantment en = null;
+		  int lvl = 0;
+		  ItemStack i = p.getItemInHand();
+		  try{
+			  mp = enchants.get(p.getName()).keySet().iterator();
+			  en = mp.next();
+			  lvl = enchants.get(p.getName()).get(en);
+		  }catch(Exception ex){
+			  ex.printStackTrace();
+		  }
+		  config conf = config.Obtain();
+			if(FC)
+				init();
+			
+			double b = eH.getBalance(p);
+			double cost = getEnchantCost(p, e, lvl);
+			
+			p.sendMessage("e: " + e.toLowerCase());
+			p.sendMessage("cost: " + cost);
+			
+			if(b > cost) {
+				eH.withdraw(p, cost);
+				
+		  p.sendMessage("nen: " + en);
+		  p.sendMessage("nlvl: " + lvl);
+		  	  try{
+		  		  i.addEnchantment(en, lvl);
+				  ChatListener.remove(p);
+	    	  }catch(IllegalArgumentException ex){
+	    		  if(pH.has(p, "blacksmith.enchant.unsafe")){
+	    			  i.addUnsafeEnchantment(en, lvl);
+	      			  ChatListener.remove(p);
+	      			}else{
+	        			p.sendMessage("You are not allowed to enchant unsafely, try again!");
+	        			ChatListener.add(p, 1);
+	        		}
+	    	  }
+		  }
+	  }
+	  
+	  public static int getEnchantCost(Player p, String e, int lvl){
+		  Permission pH = BlackSmith.getPlugin().getPermHandler().getEngine();
 		  config conf = config.Obtain();
 		  int c = 0;
 		  try{
-			  c = conf.getInt(e);
+			  c = conf.getInt("BlackSmith.EnchantmentBases." + e);
 		  }catch(Exception ex){
 			  p.sendMessage("Whoops, the price for this enchant is not defined correctly! Please inform an admin immediatly");
 			  ChatListener.remove(p);
 		  }
-		  int fc = c * lvl;
-		  return null;
+		  p.sendMessage("rawcost: " + c);
+		  return pH.has(p, "blacksmith.enchant.free") ? 0 : c * lvl;
 	  }
+	  
 	  private static int getEnchantId(String e) {
 	    if (e.equalsIgnoreCase("Protection"))
 	      return 0;

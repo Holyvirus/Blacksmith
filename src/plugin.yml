@@ -7,12 +7,20 @@ permissions:
         childs:
             blacksmith.place.value: true
             blacksmith.place.repair: true
+            blacksmith.place.free: true
+            blacksmith.place.dismantle: true
+            blacksmith.place.enchant: true
             blacksmith.remove.value: true
             blacksmith.remove.repair: true
+            blacksmith.remove.free: true
+            blacksmith.remove.dismantle: true
+            blacksmith.remove.enchant: true
             blacksmith.use.value: true
             blacksmith.use.repair: true
             blacksmith.use.free: true
             blacksmith.use.kill: true
+            blacksmith.use.dismantle: true
+            blacksmith.use.enchant: true
     blacksmith.use.*:
         description: Grants access to all BlackSmith use interactions
         childs:
@@ -20,6 +28,8 @@ permissions:
             blacksmith.use.repair: true
             blacksmith.use.free: true
             blacksmith.use.kill: true
+            blacksmith.use.dismantle: true
+            blacksmith.use.enchant: true
     blacksmith.place.*:
         description: Grants access to all BlackSmith placement interactions
         childs:
@@ -27,6 +37,8 @@ permissions:
             blacksmith.place.repair: true
             blacksmith.place.free: true
             blacksmith.place.kill: true
+            blacksmith.place.dismantle: true
+            blacksmith.place.enchant: true
     blacksmith.remove.*:
         description: Grants access to all BlackSmith remove interactions
         childs:
@@ -34,6 +46,8 @@ permissions:
             blacksmith.remove.repair: true
             blacksmith.remove.free: true
             blacksmith.remove.kill: true
+            blacksmith.remove.dismantle: true
+            blacksmith.remove.enchant: true
     blacksmith.use.value:
         description: Grants ability to use Value signs
         default: true
@@ -46,6 +60,12 @@ permissions:
     blacksmith.use.kill:
         description: Grants ability to use Kill signs
         default: true
+    blacksmith.use.dismantle:
+        description: Grants ability to use Kill signs
+        default: true
+    blacksmith.use.enchant:
+        description: Grants ability to use Kill signs
+        default: true
     blacksmith.place.value:
         description: Grants ability to place Value signs
         default: op
@@ -54,10 +74,16 @@ permissions:
         default: op
     blacksmith.place.free:
         description: Grants ability to place Free signs
-        default: true
+        default: op
     blacksmith.place.kill:
         description: Grants ability to place Kill signs
-        default: true
+        default: op
+    blacksmith.place.dismantle:
+        description: Grants ability to place Kill signs
+        default: op
+    blacksmith.place.enchant:
+        description: Grants ability to place Kill signs
+        default: op
     blacksmith.remove.value:
         description: Grants ability to remove Value signs
         default: op
@@ -68,5 +94,11 @@ permissions:
         description: Grants ability to remove Free signs
         default: op
     blacksmith.remove.kill:
+        description: Grants ability to remove Kill signs
+        default: op
+    blacksmith.remove.dismantle:
+        description: Grants ability to remove Kill signs
+        default: op
+    blacksmith.remove.enchant:
         description: Grants ability to remove Kill signs
         default: op

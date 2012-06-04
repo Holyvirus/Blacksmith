@@ -22,7 +22,7 @@ BlackSmith:
     Settings:
         DismantleOnlyOnFull: true
         DismantleDivider: 2
-    EnchantmentPrices:
+    EnchantmentBases:
         protection: 20
         fire_protection: 40
         feather_fall: 40
