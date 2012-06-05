@@ -228,6 +228,6 @@ public class Misc {
 			return "No item passed!";
 		
 		Items iH = BlackSmith.getPlugin().getItemHandler();
-		return iH.getItemNameByID(i.getTypeId(), (int)i.getDurability());;
+		return iH.getItemNameByID(i.getTypeId(), null);
 	}
 }
