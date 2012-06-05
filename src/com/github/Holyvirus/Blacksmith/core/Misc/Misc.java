@@ -3,6 +3,9 @@ package com.github.Holyvirus.Blacksmith.core.Misc;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
 
+import com.github.Holyvirus.Blacksmith.BlackSmith;
+import com.github.Holyvirus.Blacksmith.core.Items.Items;
+
 public class Misc {
 	
 	public static ToolType getKind(ItemStack i) {
@@ -218,5 +221,13 @@ public class Misc {
 		float p = (float)Math.pow(10,precision);
 		
 		return Math.round(r * p) / p;
+	}
+	
+	public static String getItemName(ItemStack i) {
+		if(i == null)
+			return "No item passed!";
+		
+		Items iH = BlackSmith.getPlugin().getItemHandler();
+		return iH.getItemNameByID(i.getTypeId(), (int)i.getDurability());;
 	}
 }
