@@ -1,6 +1,13 @@
 name: Blacksmith
 main: com.github.Holyvirus.Blacksmith.BlackSmith
 version: 2.1
+commands:
+   blacksmith:
+      description: Restock giant shop!
+      usage: /<command> collect
+   bs:
+      description: Restock giant shop!
+      usage: /<command> collect
 permissions:
     blacksmith.*:
         description: Grants access to all BlackSmith interactions

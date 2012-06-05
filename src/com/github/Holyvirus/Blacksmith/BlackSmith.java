@@ -8,6 +8,7 @@ import com.github.Holyvirus.Blacksmith.core.Tools.Materials.Materials;
 import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.Listeners.*;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -199,4 +200,63 @@ public class BlackSmith extends JavaPlugin {
 			}
 		}
 	}
+	
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+    	if (cmd.getName().equalsIgnoreCase("BlackSmith") || (cmd.getName().equalsIgnoreCase("bs"))) {
+    		if(args.length >= 1){
+	    		if(args[0].equalsIgnoreCase("enchants")){
+		    		int p = 1;
+		    		if(args.length < 2){
+		    			p = 1;
+		    		}else{
+		    			try{
+		    				p = Integer.parseInt(args[1]);
+		    			}catch(NumberFormatException ex){
+		    				p = 1;
+		    			}
+		    		}
+		    		
+		    		if(p > 3)
+		    			p = 3;
+		    		
+		    		if(p == 1) {
+		    			sender.sendMessage("¤6=_=_=_=_=_=_=_=_=_=_={¤8BlackSmith¤6}=_=_=_=_=_=_=_=_=_=_=");
+		    			sender.sendMessage(ChatColor.GRAY + "Here is the first page of the enchants, for the rest please type \"/bs enchants (pg)!\"");
+		    			sender.sendMessage("    -protection");
+		    			sender.sendMessage("    -fire_protection");
+		    	        sender.sendMessage("    -feather_fall");
+		    	        sender.sendMessage("    -blast_protection");
+		    	        sender.sendMessage("    -projectile_protection");
+		    	        sender.sendMessage("    -respiration");
+		    	        sender.sendMessage("    -aqua_affinity");
+		    		}else if(p == 2) {
+		    			sender.sendMessage("¤6=_=_=_=_=_=_=_=_=_=_={¤7BlackSmith¤6}=_=_=_=_=_=_=_=_=_=_=");
+		    			sender.sendMessage(ChatColor.GRAY +"Here is the second page of enchants, for the others please type \"/bs enchants (pg)!\"!");
+		    	        sender.sendMessage("    -sharpness");
+		    	        sender.sendMessage("    -smite");
+		    	        sender.sendMessage("    -bane_of_arthropods"); 
+		    	        sender.sendMessage("    -knockback");
+		    			sender.sendMessage("    -fire_aspect");
+		    	        sender.sendMessage("    -looting");
+		    	        sender.sendMessage("    -efficiency");
+		    		}else if(p == 3){
+		    			sender.sendMessage("¤6=_=_=_=_=_=_=_=_=_=_={¤7BlackSmith¤6}=_=_=_=_=_=_=_=_=_=_=");
+		    			sender.sendMessage(ChatColor.GRAY +"Here is the third page of enchants, for the others please type \"/bs enchants (pg)!\"!");
+		    	        sender.sendMessage("    -silk touch");
+		    	        sender.sendMessage("    -unbreaking");
+		    	        sender.sendMessage("    -fortune");
+		    	        sender.sendMessage("    -power");
+		    	        sender.sendMessage("    -punch");
+		    	        sender.sendMessage("    -flame");
+		    	        sender.sendMessage("    -infinity");
+		    		}
+	    		}else{
+	    			sender.sendMessage(ChatColor.RED + "You have entered an invlaid format, please type \"/bs enchants\"");
+	    		}
+    		}else{
+    			sender.sendMessage(ChatColor.RED + "You have entered an invlaid format, please type \"/bs enchants\"");
+    		}
+		}
+    	return true;
+    }
 }
