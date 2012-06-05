@@ -48,14 +48,20 @@ public class PlayerListener implements Listener {
 						if(pH.has(p, "blacksmith.use.value")) {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
-								if(rCost.size() == 1) {
-									p.sendMessage(ChatColor.BLUE + "It will cost you " + rCost.get(0) + " to repair your " + event.getItem().getType().toString().toLowerCase().replace("_", " ") + " or " + dCost + " to dismantle!");
-								}else{
-									p.sendMessage(ChatColor.BLUE + "To repair your " + event.getItem().getType().toString().toLowerCase().replace("_", " ") + " it will cost you");
-									for(String s : rCost) {
-										p.sendMessage(ChatColor.BLUE + " - " + s);
+								String name = Misc.getItemName(event.getItem());
+								if(event.getItem().getDurability() > 0) {
+									if(rCost.size() == 1) {
+										p.sendMessage(ChatColor.BLUE + "It will cost you " + rCost.get(0) + " to repair your " + name + " or " + dCost + " to dismantle!");
+									}else{
+										p.sendMessage(ChatColor.BLUE + "To repair your " + name+ " it will cost you");
+										for(String s : rCost) {
+											p.sendMessage(ChatColor.BLUE + " - " + s);
+										}
+										if(!conf.getBoolean("BlackSmith.Settings.DismantleOnlyOnFull"))
+											p.sendMessage(ChatColor.BLUE + "or " + dCost + " to dismantle!");
 									}
-									p.sendMessage(ChatColor.BLUE + "or " + dCost + " to dismantle!");
+								}else{
+									p.sendMessage(ChatColor.BLUE + "It will cost you " + dCost + " to dismantle your " + name + "!");
 								}
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
@@ -68,11 +74,15 @@ public class PlayerListener implements Listener {
 						if(pH.has(p, "blacksmith.use.repair")) {
 							Material m = Misc.getMatType(event.getItem());
 							if(m != null) {
-								String s = Repair.doRepair(p, event.getItem());
-								if(s == null) {
-									p.sendMessage(ChatColor.GREEN + "Tool repaired!");
+								if(event.getItem().getDurability() > 0) {
+									String s = Repair.doRepair(p, event.getItem());
+									if(s == null) {
+										p.sendMessage(ChatColor.GREEN + "Tool repaired!");
+									}else{
+										p.sendMessage(ChatColor.DARK_RED + "Failed to repair tool because " + s); 
+									}
 								}else{
-									p.sendMessage(ChatColor.DARK_RED + "Failed to repair tool because " + s); 
+									p.sendMessage(ChatColor.BLUE + "You tool is not even broken!");
 								}
 							}else{
 								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
