@@ -1,8 +1,6 @@
 package com.github.Holyvirus.Blacksmith.core.Tools.Enchanter;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
@@ -13,8 +11,6 @@ import com.github.Holyvirus.Blacksmith.BlackSmith;
 import com.github.Holyvirus.Blacksmith.Listeners.ChatListener;
 import com.github.Holyvirus.Blacksmith.core.config;
 import com.github.Holyvirus.Blacksmith.core.Eco.iEco;
-import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Cost;
-import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.core.perms.Permission;
 
 public class Enchanter {
@@ -47,10 +43,10 @@ public class Enchanter {
 
 	public static void enchantValidate(Player p, String e, int rlvl){//shut up for now :P
 		HashMap<Enchantment, Integer> fen = new HashMap<Enchantment, Integer>();
-		Permission pH = BlackSmith.getPlugin().getPermHandler().getEngine();
 		ItemStack i = null;
 		int lvl = 0;
 		Enchantment en = Enchantment.getById(getEnchantId(e));
+		
 		if (p.getItemInHand().getTypeId() == ((ItemStack)item.get(p.getName())).getTypeId()) {
 			i = p.getItemInHand();
 			if (i.getAmount() == 1) {
