@@ -30,8 +30,12 @@ public class Enchanter {
 			eH = BlackSmith.getPlugin().getEcoHandler().getEngine();
 	}
 	
-	public static void add(Player p, ItemStack i){
+	public static Boolean add(Player p, ItemStack i){
+		if(eH == null)
+			return false;
+		
 		item.put(p.getName(), i);
+		return true;
 	}
 	
 	  public static boolean validateMsg1(String m){
