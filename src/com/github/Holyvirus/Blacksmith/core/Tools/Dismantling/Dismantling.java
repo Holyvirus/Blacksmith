@@ -33,25 +33,20 @@ public class Dismantling {
 		double b = eH.getBalance(p);
 		double cost = Cost.calcCost(I) / conf.getInt("BlackSmith.Settings.DismantleDivider");
 
-		p.sendMessage("DurBur: " + (1 - (double) I.getDurability() / (double) I.getType().getMaxDurability()) + " cost: " + cost + ", b: " + b + ", dur: " + I.getDurability() + ", Int: " + conf.getInt("BlackSmith.Settings.DismantleDivider") + ", onfull: " + conf.getBoolean("BlackSmith.Settings.DismantleOnlyOnFull"));
-
 		if(b > cost) {
 			eH.withdraw(p, cost);
 			if(config.Obtain().getBoolean("BlackSmith.Settings.DismantleOnlyOnFull")){
 				if(I.getDurability() == 0){
 					Dismantling.take(p, I);
 					Dismantling.add(p, I,(double) 1);
-					p.updateInventory();
 					return null;
 				}else{
 					return "your settings require the item to be at full durability!";
 				}
 			}else{
 				double c = (1 - (double) I.getDurability() / (double) I.getType().getMaxDurability());
-				p.sendMessage("C: " + c);
 				Dismantling.take(p, I);
 				Dismantling.add(p, I, c);
-				p.updateInventory();
 				return null;
 			}
 		}else{

@@ -30,7 +30,7 @@ public class Enchanter {
 			eH = BlackSmith.getPlugin().getEcoHandler().getEngine();
 	}
 	
-	public static Boolean add(Player p, ItemStack i){
+	public static boolean add(Player p, ItemStack i){
 		if(eH == null)
 			return false;
 		
@@ -52,13 +52,10 @@ public class Enchanter {
 		  Permission pH = BlackSmith.getPlugin().getPermHandler().getEngine();
 		  ItemStack i = null;
 		  int lvl = 0;
-		  p.sendMessage("e: " + e.toUpperCase());
 		  Enchantment en = Enchantment.getById(getEnchantId(e));
-		  p.sendMessage("en: " + en);
 	      if (p.getItemInHand().getTypeId() == ((ItemStack)item.get(p.getName())).getTypeId()) {
 	    	  i = p.getItemInHand();
 		      if (i.getAmount() == 1) {
-		    	  p.sendMessage("i = : " + i);
 		    	  if (i.containsEnchantment(en)) {
 		    		  int plvl = i.getEnchantmentLevel(en);
 		    		  lvl = plvl + rlvl;
@@ -68,45 +65,47 @@ public class Enchanter {
 		    	  fen.put(en, lvl);
 		    	  enchants.put(p.getName(), fen);
 		    	  ChatListener.add(p, 2);
-				  p.sendMessage("lvl: " + lvl);
 		    	  p.sendMessage("The enchant will cost you: " + getEnchantCost(p, e.toLowerCase(), rlvl) + "! Should I continue? Please type \"yes\" or \"no\"!");
 	      }else{
 	        p.sendMessage(ChatColor.RED + "You have more then one item in your slot, please try again!");
 	      }
-	    } else {
-	      p.sendMessage("iteminhand: " + p.getItemInHand());
-	      p.sendMessage("item.get: " + item.get(p.getName()));
 	    }
 	  }
 
 	  public static void enchant(Player p, String e){
+		  config conf = config.Obtain();
 		  Permission pH = BlackSmith.getPlugin().getPermHandler().getEngine();
-		  Iterator<Enchantment> mp;
 		  Enchantment en = null;
 		  int lvl = 0;
-		  ItemStack i = p.getItemInHand();
-		  try{
-			  mp = enchants.get(p.getName()).keySet().iterator();
-			  en = mp.next();
-			  lvl = enchants.get(p.getName()).get(en);
-		  }catch(Exception ex){
-			  ex.printStackTrace();
+		  ItemStack i = null;
+		  if(p.getItemInHand() != null){
+			  if (p.getItemInHand().getTypeId() == ((ItemStack)item.get(p.getName())).getTypeId()) {
+				  i = p.getItemInHand();
+			  }else{
+				  ChatListener.add(p, 1);
+				  p.sendMessage(ChatColor.RED + "You have changed the item in your hand, please try again!");
+				  return;
+			  }
+		  }else{
+			  ChatListener.add(p, 1);
+			  p.sendMessage(ChatColor.RED + "You have changed the item in your hand, please try again!");
 		  }
-		  config conf = config.Obtain();
+			  try{
+				  en = enchants.get(p.getName()).keySet().iterator().next();
+				  lvl = enchants.get(p.getName()).get(en);
+			  }catch(Exception ex){
+				  if(conf.getBoolean("BlackSmith.global.debug"))
+					  ex.printStackTrace();
+			  }
 			if(FC)
 				init();
 			
 			double b = eH.getBalance(p);
 			double cost = getEnchantCost(p, e, lvl);
 			
-			p.sendMessage("e: " + e.toLowerCase());
-			p.sendMessage("cost: " + cost);
-			
 			if(b > cost) {
 				eH.withdraw(p, cost);
 				
-		  p.sendMessage("nen: " + en);
-		  p.sendMessage("nlvl: " + lvl);
 		  	  try{
 		  		  i.addEnchantment(en, lvl);
 				  ChatListener.remove(p);
@@ -132,7 +131,6 @@ public class Enchanter {
 			  p.sendMessage("Whoops, the price for this enchant is not defined correctly! Please inform an admin immediatly");
 			  ChatListener.remove(p);
 		  }
-		  p.sendMessage("rawcost: " + c);
 		  return pH.has(p, "blacksmith.enchant.free") ? 0 : c * lvl;
 	  }
 	  
