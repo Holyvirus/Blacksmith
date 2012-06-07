@@ -27,6 +27,9 @@ public class Dismantling {
 		if(FC)
 			init();
 		
+		if(eH == null)
+			return null;
+		
 		double b = eH.getBalance(p);
 		double cost = Cost.calcCost(I) / conf.getInt("BlackSmith.Settings.DismantleDivider");
 
