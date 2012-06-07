@@ -42,12 +42,7 @@ public class Enchanter {
 	}
 	
 	public static boolean validateMsg1(String m){
-		return (m.equalsIgnoreCase("Protection")) || (m.equalsIgnoreCase("Fire_Protection")) || (m.equalsIgnoreCase("Feather_Fall")) || (m.equalsIgnoreCase("Blast_Protection")) || 
-		(m.equalsIgnoreCase("Projectile_Protection")) || (m.equalsIgnoreCase("Respiration")) || (m.equalsIgnoreCase("Aqua_Affinity")) || 
-		(m.equalsIgnoreCase("Sharpness")) || (m.equalsIgnoreCase("Smite")) || (m.equalsIgnoreCase("Bane_of_Arthropods")) || (m.equalsIgnoreCase("Knockback")) || 
-		(m.equalsIgnoreCase("Fire_Aspect")) || (m.equalsIgnoreCase("Looting")) || (m.equalsIgnoreCase("Efficiency")) || (m.equalsIgnoreCase("Silk_Touch")) || 
-		(m.equalsIgnoreCase("Unbreaking")) || (m.equalsIgnoreCase("Fortune")) || (m.equalsIgnoreCase("Power")) || (m.equalsIgnoreCase("Punch")) || (m.equalsIgnoreCase("Flame")) || 
-		(m.equalsIgnoreCase("Infinity"));
+		return getEnchantId(m) != 901;
 	}
 
 	public static void enchantValidate(Player p, String e, int rlvl){//shut up for now :P
