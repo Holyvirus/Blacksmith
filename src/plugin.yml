@@ -1,6 +1,6 @@
 name: Blacksmith
 main: com.github.Holyvirus.Blacksmith.BlackSmith
-version: 2.1
+version: 2.2
 commands:
    blacksmith:
       description: View possible enchant formats!
