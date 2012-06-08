@@ -125,20 +125,24 @@ public class PlayerListener implements Listener {
 						}
 						break;
 					case DISMANTLE:
-						if(pH.has(p, "blacksmith.use.dismantle")) {
-							Material m = Misc.getMatType(event.getItem());
-							if(m != null) {
-								String d = Dismantling.dismantle(p, event.getItem());
-								if(d == null) {
-									p.sendMessage(ChatColor.GREEN + "Tool dismantled!");
+						if(event.getAction() == Action.LEFT_CLICK_BLOCK){
+							if(pH.has(p, "blacksmith.use.dismantle")) {
+								Material m = Misc.getMatType(event.getItem());
+								if(m != null) {
+									String d = Dismantling.dismantle(p, event.getItem());
+									if(d == null) {
+										p.sendMessage(ChatColor.GREEN + "Tool dismantled!");
+									}else{
+										p.sendMessage(ChatColor.DARK_RED + "Failed to repair tool because " + d); 
+									}
 								}else{
-									p.sendMessage(ChatColor.DARK_RED + "Failed to repair tool because " + d); 
+									p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
 								}
 							}else{
-								p.sendMessage(ChatColor.DARK_RED + "Item not a tool!");
+								p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
 							}
 						}else{
-							p.sendMessage(ChatColor.DARK_RED + "You do not have permission to use that sign!");
+							p.sendMessage(ChatColor.GREEN + "You must left click for this sign!");
 						}
 						break;
 					case ENCHANT:
