@@ -68,10 +68,10 @@ permissions:
         description: Grants ability to use Kill signs
         default: true
     blacksmith.use.dismantle:
-        description: Grants ability to use Kill signs
+        description: Grants ability to use Dismantle signs
         default: true
     blacksmith.use.enchant:
-        description: Grants ability to use Kill signs
+        description: Grants ability to use Enchant signs
         default: true
     blacksmith.place.value:
         description: Grants ability to place Value signs
@@ -86,10 +86,10 @@ permissions:
         description: Grants ability to place Kill signs
         default: op
     blacksmith.place.dismantle:
-        description: Grants ability to place Kill signs
+        description: Grants ability to place Dismantle signs
         default: op
     blacksmith.place.enchant:
-        description: Grants ability to place Kill signs
+        description: Grants ability to place Enchant signs
         default: op
     blacksmith.remove.value:
         description: Grants ability to remove Value signs
@@ -104,8 +104,14 @@ permissions:
         description: Grants ability to remove Kill signs
         default: op
     blacksmith.remove.dismantle:
-        description: Grants ability to remove Kill signs
+        description: Grants ability to remove Dismantle signs
         default: op
     blacksmith.remove.enchant:
-        description: Grants ability to remove Kill signs
+        description: Grants ability to remove Enchant signs
+        default: op
+    blacksmith.enchant.unsafe:
+        description: Grants ability to enchant unsafely!
+        default: op
+    blacksmith.enchant.free:
+        description: Grants ability to enchant for free!
         default: op
