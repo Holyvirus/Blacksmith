@@ -30,9 +30,6 @@ public class ChatListener implements Listener {
 	public void onChat(PlayerChatEvent event){
 		Player p = event.getPlayer();
 		String m = event.getMessage();
-		p.sendMessage(event.getFormat());
-		p.sendMessage("size: " + msgCount.size());
-		p.sendMessage("msg: " + m);
 		if(msgCount.containsKey(p.getName())){
 			Integer c = msgCount.get(p.getName());
 			p.sendMessage("c: " + c);
