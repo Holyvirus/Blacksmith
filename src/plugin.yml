@@ -3,11 +3,11 @@ main: com.github.Holyvirus.Blacksmith.BlackSmith
 version: 2.1
 commands:
    blacksmith:
-      description: Restock giant shop!
-      usage: /<command> collect
+      description: View possible enchant formats!
+      usage: /<command> enchants
    bs:
-      description: Restock giant shop!
-      usage: /<command> collect
+      description: View possible enchant formats!
+      usage: /<command> enchants
 permissions:
     blacksmith.*:
         description: Grants access to all BlackSmith interactions

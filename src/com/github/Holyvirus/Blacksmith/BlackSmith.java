@@ -220,7 +220,7 @@ public class BlackSmith extends JavaPlugin {
 		    			p = 3;
 		    		
 		    		if(p == 1) {
-		    			sender.sendMessage("¤6=_=_=_=_=_=_=_=_=_=_={¤8BlackSmith¤6}=_=_=_=_=_=_=_=_=_=_=");
+		    			sender.sendMessage(ChatColor.GOLD + "=_=_=_=_=_=_=_=_=_=_={"+ ChatColor.DARK_GRAY +"BlackSmith" + ChatColor.GOLD + "}=_=_=_=_=_=_=_=_=_=_=");
 		    			sender.sendMessage(ChatColor.GRAY + "Here is the first page of the enchants, for the rest please type \"/bs enchants (pg)!\"");
 		    			sender.sendMessage("    -protection");
 		    			sender.sendMessage("    -fire_protection");
@@ -230,7 +230,7 @@ public class BlackSmith extends JavaPlugin {
 		    	        sender.sendMessage("    -respiration");
 		    	        sender.sendMessage("    -aqua_affinity");
 		    		}else if(p == 2) {
-		    			sender.sendMessage("¤6=_=_=_=_=_=_=_=_=_=_={¤7BlackSmith¤6}=_=_=_=_=_=_=_=_=_=_=");
+		    			sender.sendMessage(ChatColor.GOLD + "=_=_=_=_=_=_=_=_=_=_={"+ ChatColor.DARK_GRAY +"BlackSmith" + ChatColor.GOLD + "}=_=_=_=_=_=_=_=_=_=_=");
 		    			sender.sendMessage(ChatColor.GRAY +"Here is the second page of enchants, for the others please type \"/bs enchants (pg)!\"!");
 		    	        sender.sendMessage("    -sharpness");
 		    	        sender.sendMessage("    -smite");
@@ -240,7 +240,7 @@ public class BlackSmith extends JavaPlugin {
 		    	        sender.sendMessage("    -looting");
 		    	        sender.sendMessage("    -efficiency");
 		    		}else if(p == 3){
-		    			sender.sendMessage("¤6=_=_=_=_=_=_=_=_=_=_={¤7BlackSmith¤6}=_=_=_=_=_=_=_=_=_=_=");
+		    			sender.sendMessage(ChatColor.GOLD + "=_=_=_=_=_=_=_=_=_=_={"+ ChatColor.DARK_GRAY +"BlackSmith" + ChatColor.GOLD + "}=_=_=_=_=_=_=_=_=_=_=");
 		    			sender.sendMessage(ChatColor.GRAY +"Here is the third page of enchants, for the others please type \"/bs enchants (pg)!\"!");
 		    	        sender.sendMessage("    -silk touch");
 		    	        sender.sendMessage("    -unbreaking");
