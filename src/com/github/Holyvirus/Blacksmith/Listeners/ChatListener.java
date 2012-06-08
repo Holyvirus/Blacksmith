@@ -32,7 +32,6 @@ public class ChatListener implements Listener {
 		String m = event.getMessage();
 		if(msgCount.containsKey(p.getName())){
 			Integer c = msgCount.get(p.getName());
-			p.sendMessage("c: " + c);
 			if(c == 1){
 				if(m.matches("^[a-zA-Z_]+ [0-9]+$")){
 					String[] s = m.split(" ");
