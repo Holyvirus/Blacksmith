@@ -38,7 +38,7 @@ public class Dismantling {
 			if(config.Obtain().getBoolean("BlackSmith.Settings.DismantleOnlyOnFull")){
 				if(I.getDurability() == 0){
 					Dismantling.take(p, I);
-					Dismantling.add(p, I,(double) 1);
+					Dismantling.add(p, I, 1);
 					return null;
 				}else{
 					return "your settings require the item to be at full durability!";
@@ -54,10 +54,12 @@ public class Dismantling {
 		}
 		//return "your item could not be handled, check the \"Blacksmith.Settings.DismantleOnlyOnFull\" node in your config!";
 	}
+	
 	public static void take(Player p, ItemStack I){
-		//mEco mH = BlackSmith.getPlugin().getMatEngine();
-		p.getInventory().removeItem(I);
+		mEco mH = BlackSmith.getPlugin().getMatEngine();
+		mH.withdraw(p, I, 1);
 	}
+	
 	public static void add(Player p, ItemStack I, double c){
 		int a = (int) Math.round(c * Cost.getUsedBlocks(I));
 		a = (a < 1) ? 1 : a;
@@ -218,7 +220,6 @@ public class Dismantling {
 			case DIAMOND_BOOTS:
 				mH.deposit(p, DIAMOND, a);
 				break;
-				
 		}
 	}
 }
