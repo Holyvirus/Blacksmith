@@ -6,6 +6,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.github.Holyvirus.Blacksmith.BlackSmith;
 import com.github.Holyvirus.Blacksmith.core.config;
+import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
 import com.github.Holyvirus.Blacksmith.core.Eco.iEco;
 import com.github.Holyvirus.Blacksmith.core.Eco.mEco;
 import com.github.Holyvirus.Blacksmith.core.Tools.Cost.Cost;
@@ -14,6 +15,7 @@ public class Dismantling {
 	
 	private static boolean FC = true;
 	private static iEco eH;
+	private static mEco mH;
 	
 	static config conf = config.Obtain();
 	
@@ -21,6 +23,8 @@ public class Dismantling {
 		FC = false;
 		if(null != BlackSmith.getPlugin().getEcoHandler())
 			eH = BlackSmith.getPlugin().getEcoHandler().getEngine();
+		
+		mH = (mEco) new Eco(BlackSmith.getPlugin(), "Materials").getEngine();
 	}
 	
 	public static String dismantle(Player p, ItemStack I){
@@ -56,7 +60,6 @@ public class Dismantling {
 	}
 	
 	public static void take(Player p, ItemStack I){
-		mEco mH = BlackSmith.getPlugin().getMatEngine();
 		mH.withdraw(p, I, 1);
 	}
 	
@@ -70,7 +73,7 @@ public class Dismantling {
 		ItemStack IRON = new ItemStack(Material.IRON_INGOT);
 		ItemStack GOLD = new ItemStack(Material.GOLD_INGOT);
 		ItemStack DIAMOND = new ItemStack(Material.DIAMOND);
-		mEco mH = BlackSmith.getPlugin().getMatEngine();
+		
 		switch(I.getType()) {
 			case WOOD_PICKAXE:
 				mH.deposit(p, WOOD, a);
