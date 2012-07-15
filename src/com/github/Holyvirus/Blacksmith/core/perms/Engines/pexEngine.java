@@ -158,7 +158,7 @@ public class pexEngine implements Permission {
 	
 	@Override
 	public boolean isEnabled() {
-		return permission.isEnabled();
+		return permission != null;
 	}
 	
 	private class PluginListener implements Listener {
