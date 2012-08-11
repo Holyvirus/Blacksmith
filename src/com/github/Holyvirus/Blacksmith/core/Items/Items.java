@@ -78,23 +78,25 @@ public class Items {
 			
 			List<String> names = config.getStringList("names." + item);
 			if(names.size() > 0) {
-				String name = names.get(0).toLowerCase().replaceAll(" ", "_");
+				String name = names.get(0);
+				String namePrep = name.toLowerCase().replaceAll(" ", "_");
 				ItemID iID = new ItemID(id, null);
 				iID.setName(name);
 				
 				itemsByID.put(iID, name);
-				itemsByName.put(name, iID);
+				itemsByName.put(namePrep, iID);
 				
 				for(int i = 1; i < names.size(); i++) {
 					itemsAliases.put(names.get(i).toLowerCase().replaceAll(" ", "_"), iID);
 				}
 			}else{
-				String name = config.getString("names." + item).toLowerCase().replaceAll(" ", "_");
+				String name = config.getString("names." + item);
+				String namePrep = name.toLowerCase().replaceAll(" ", "_");
 				ItemID iID = new ItemID(id, null);
 				iID.setName(name);
 				
 				itemsByID.put(iID, name);
-				itemsByName.put(name, iID);
+				itemsByName.put(namePrep, iID);
 			}
 		}
 	}
@@ -130,7 +132,7 @@ public class Items {
 				if(typeNames.size() > 0) {
 					ItemID iID = new ItemID(itemID, typeID);
 					String name = typeNames.get(0).toLowerCase().replaceAll(" ", "_");
-					iID.setName(name);
+					iID.setName(typeNames.get(0));
 					
 					this.itemTypes.put(iID, typeNames);
 					this.itemsByID.put(iID, typeNames.get(0));
