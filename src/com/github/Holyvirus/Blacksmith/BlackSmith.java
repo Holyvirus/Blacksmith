@@ -5,6 +5,7 @@ import com.github.Holyvirus.Blacksmith.core.Eco.Eco;
 import com.github.Holyvirus.Blacksmith.core.Eco.mEco;
 import com.github.Holyvirus.Blacksmith.core.Items.Items;
 import com.github.Holyvirus.Blacksmith.core.Tools.Materials.Materials;
+import com.github.Holyvirus.Blacksmith.core.Updater.Updater;
 import com.github.Holyvirus.Blacksmith.core.perms.PermHandler;
 import com.github.Holyvirus.Blacksmith.Listeners.*;
 
@@ -30,6 +31,7 @@ public class BlackSmith extends JavaPlugin {
 	private mEco matHandler;
 	private PermHandler permHandler;
 	private Items itemHandler;
+	private Updater updater;
 	private String name, dir, pubName;
 	private String bName = "Spikey Hamer";
 	private Boolean useEco = true;
@@ -45,7 +47,7 @@ public class BlackSmith extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		Server = this.getServer();
-		
+		this.updater = new Updater(this);
 		this.name = getDescription().getName();
 		this.dir = getDataFolder().toString();
 		
@@ -122,6 +124,14 @@ public class BlackSmith extends JavaPlugin {
 		log.log(Level.INFO, "[" + this.name + "] Was successfully disabled!");
 	}
 	
+	public Boolean isOutOfDate() {
+		return this.updater.isOutOfDate();
+	}
+	
+	public String getNewVersion() {
+		return this.updater.getNewVersion();
+	}
+	
 	public String getPluginName() {
 		return this.name;
 	}
@@ -144,6 +154,14 @@ public class BlackSmith extends JavaPlugin {
 	
 	public Items getItemHandler() {
 		return this.itemHandler;
+	}
+	
+	public int scheduleAsyncDelayedTask(final Runnable run) {
+		return getServer().getScheduler().scheduleAsyncDelayedTask(this, run, 20L);
+	}
+
+	public int scheduleAsyncRepeatingTask(final Runnable run, Long init, Long delay) {
+		return getServer().getScheduler().scheduleAsyncRepeatingTask(this, run, init, delay);
 	}
 	
 	public PermHandler getPermHandler() {
