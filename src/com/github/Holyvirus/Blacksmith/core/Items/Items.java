@@ -21,7 +21,7 @@ public class Items {
 	
 	private BlackSmith plugin;
 	private YamlConfiguration config;
-	private double itemVersion = 0.1;
+	private double itemVersion = 0.2;
 	private HashMap<ItemID, String> itemsByID = new HashMap<ItemID, String>();
 	private HashMap<String, ItemID> itemsByName = new HashMap<String, ItemID>();
 	private HashMap<ItemID, List<String>> itemTypes = new HashMap<ItemID, List<String>>();
