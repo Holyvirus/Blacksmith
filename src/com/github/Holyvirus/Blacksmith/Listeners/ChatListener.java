@@ -1,15 +1,13 @@
 package com.github.Holyvirus.Blacksmith.Listeners;
 
 import java.util.HashMap;
-import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import com.github.Holyvirus.Blacksmith.BlackSmith;
 import com.github.Holyvirus.Blacksmith.core.Tools.Enchanter.Enchanter;
 
 public class ChatListener implements Listener {
@@ -27,7 +25,7 @@ public class ChatListener implements Listener {
 	}
 	
 	@EventHandler
-	public void onChat(PlayerChatEvent event){
+	public void onChat(AsyncPlayerChatEvent event){
 		Player p = event.getPlayer();
 		String m = event.getMessage();
 		if(msgCount.containsKey(p.getName())){
