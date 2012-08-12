@@ -13,14 +13,17 @@ import com.github.Holyvirus.Blacksmith.core.Tools.Sign.*;
 
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
 
@@ -165,6 +168,25 @@ public class PlayerListener implements Listener {
 				}
 			}
 		}
+	}
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onPlayerJoin(final PlayerJoinEvent e) {
+		if(e.getPlayer().isOp()) {
+			if(plugin.isOutOfDate()) {
+				plugin.scheduleAsyncDelayedTask(new Runnable() {
+					@Override
+					public void run()
+					{
+						delayedJoin(e.getPlayer());
+					}
+				});
+			}
+		}
+	}
+
+	public void delayedJoin(Player p) {
+		p.sendMessage(ChatColor.RED +  "A new version of Blacksmith has been released! You are currently running: " + plugin.getDescription().getVersion() + " while the latest version is: " + plugin.getNewVersion());
 	}
 	
 }
