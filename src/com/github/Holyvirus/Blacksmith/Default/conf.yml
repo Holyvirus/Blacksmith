@@ -1,6 +1,6 @@
 BlackSmith:
     global:
-        version: 2.2
+        version: 0.1
         name: BlackSmith
         debug: false
     permissions:
