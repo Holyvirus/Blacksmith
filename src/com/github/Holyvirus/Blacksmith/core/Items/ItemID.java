@@ -1,6 +1,8 @@
 package com.github.Holyvirus.Blacksmith.core.Items;
 
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 
 /**
  *
@@ -56,6 +58,25 @@ public class ItemID {
 	
 	public Material getMaterial() {
 		return Material.getMaterial(id);
+	}
+	
+	public ItemStack getItemStack() {
+		return this.getItemStack(1);
+	}
+	
+	public ItemStack getItemStack(int amount) {
+		ItemStack iStack;
+		
+		if(type != 0) {
+			if(id != 373)
+				iStack = new MaterialData(id, (byte) ((int) type)).toItemStack(amount);
+			else
+				iStack = new ItemStack(id, amount, (short) ((int) type));
+		}else{
+			iStack = new ItemStack(id, amount);
+		}
+		
+		return iStack;
 	}
 	
 	@Override
