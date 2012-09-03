@@ -1,5 +1,7 @@
 package com.github.Holyvirus.Blacksmith.core.Items;
 
+import org.bukkit.Material;
+
 /**
  *
  * @author Giant
@@ -50,6 +52,10 @@ public class ItemID {
 	
 	public String getName() {
 		return this.name;
+	}
+	
+	public Material getMaterial() {
+		return Material.getMaterial(id);
 	}
 	
 	@Override
