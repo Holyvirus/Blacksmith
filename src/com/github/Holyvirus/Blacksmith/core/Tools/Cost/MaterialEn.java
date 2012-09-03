@@ -145,5 +145,7 @@ public class MaterialEn {
 				}
 			}
 		}
+		
+		p.updateInventory();
 	}
 }
